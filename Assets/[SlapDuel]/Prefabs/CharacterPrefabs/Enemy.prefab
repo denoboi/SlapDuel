@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6829135893734621273}
   - component: {fileID: 2023562435126052185}
+  - component: {fileID: 8770034322695544907}
   m_Layer: 0
   m_Name: StopTrigger
   m_TagString: Untagged
@@ -83,11 +84,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2285379552834534377}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8770034322695544907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285379552834534377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1879b4d9ddefcc4696b2eb1cd33a038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3500566397226646401
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +564,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3500566397226646423}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0.99, y: 0.02, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
