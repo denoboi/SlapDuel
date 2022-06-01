@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Health Main Parameters")]
+    public float CurrentHealth = 100.0f;
 
-    // Update is called once per frame
-    void Update()
+    public float MaxHealth = 100.0f;
+
+    [Header("Stamina Regeneration Parameters")]
+
+    [Range(1.25f, 15f)] public float HealthDrainMultiplier;
+
+    public void HealthDrain()
     {
-        
+        CurrentHealth -= Time.deltaTime * HealthDrainMultiplier;
+
+        if(CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            Debug.Log("EnemyBoom " + gameObject.name) ;
+        }
     }
+    
 }
