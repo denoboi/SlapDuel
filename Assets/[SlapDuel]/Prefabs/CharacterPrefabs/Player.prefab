@@ -755,6 +755,7 @@ GameObject:
   - component: {fileID: 6768968813780730484}
   - component: {fileID: 6781392756500075850}
   - component: {fileID: 3877405558246616461}
+  - component: {fileID: 7090358864256933854}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -913,6 +914,21 @@ MonoBehaviour:
   IsRegenerated: 0
   StaminaDrainMultiplier: 7.57
   StaminaRegenMultiplier: 5.06
+--- !u!114 &7090358864256933854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076014480209854705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b723d598042ef49806975b578ce816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 100
+  MaxHealth: 100
+  HealthDrainMultiplier: 10
 --- !u!1 &3076014480209854707
 GameObject:
   m_ObjectHideFlags: 0

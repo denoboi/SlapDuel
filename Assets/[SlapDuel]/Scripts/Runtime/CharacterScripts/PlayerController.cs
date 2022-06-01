@@ -23,17 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public bool IsTriggered;
     public bool IsControlable;
+    public bool IsEnemysTurn;
 
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
+  
     private void Update()
     {
         if (!LevelManager.Instance.IsLevelStarted)
@@ -55,24 +47,30 @@ public class PlayerController : MonoBehaviour
 
     private void Stop()
     {
-        if(IsTriggered)
+        if (IsTriggered)
         {
             LaneRunner.follow = false;
             AnimationController.TriggerAnimation("Idle");
 
-            if (Input.GetMouseButtonDown(0))
-                AnimationController.TriggerAnimation("Slap");
 
             if (Input.GetMouseButton(0))
             {
+                AnimationController.BoolAnimation("Slap", true);
                 Stamina.StaminaDrain();
-                
+                IsEnemysTurn = false;
+
             }
-            if(Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0))
             {
+                AnimationController.BoolAnimation("Slap", false);
                 Stamina.StaminaRegen();
+                IsEnemysTurn = true;
+
+
             }
         }
+        else
+            return;
     }
 
     
