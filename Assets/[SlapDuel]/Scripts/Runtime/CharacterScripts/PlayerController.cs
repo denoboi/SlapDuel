@@ -11,10 +11,7 @@ public class PlayerController : MonoBehaviour
     private AnimationController _animationController;
     private Stamina _stamina;
     private Health _health;
-   
-    
-    
-    
+
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
    
     public LaneRunner LaneRunner { get { return _laneRunner == null ? GetComponent<LaneRunner>() : _laneRunner;} } //bu da oluyor farkini sor.

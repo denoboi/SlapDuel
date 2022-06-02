@@ -67,14 +67,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.5667752
-        functionName: NewEvent
+        functionName: StartHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.6319218
-        functionName: SlappingEvent
+        functionName: StopHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
