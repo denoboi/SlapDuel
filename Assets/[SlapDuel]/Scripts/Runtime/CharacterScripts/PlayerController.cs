@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
     
 
-    private bool _isSlapping;
+    
     private bool _isRegenerated;
 
     public bool IsTriggered;
@@ -44,8 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (_isSlapping)
-            return;
+        
         if (IsTriggered)
             return;
         LaneRunner.follow = true;
@@ -64,7 +63,7 @@ public class PlayerController : MonoBehaviour
             {
                 AnimationController.BoolAnimation("Slap", true);
                 Stamina.StaminaDrain();
-               
+                
                 _isRegenerated = false;
 
             }

@@ -5,27 +5,37 @@ using UnityEngine;
 public class AIController : MonoBehaviour
 {
 
-    private EnemyAnimationController _EnemyAnimationController;
+   
     private Stamina _stamina;
+    private AnimationController _animationController;
     
-    public EnemyAnimationController EnemyAnimationController { get { return _EnemyAnimationController == null ? _EnemyAnimationController = GetComponent<EnemyAnimationController>() : _EnemyAnimationController; } }
+   
 
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
+    public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
+
+
     private void Update()
     {
-        
+        Slapping();
+        StopSlapping();
    
     }
 
     public void Slapping()
     {
-        EnemyAnimationController.BoolAnimation("Slap", true);
+        if(Input.GetMouseButtonUp(0))
+       AnimationController.BoolAnimation("Slap", true);
+        AnimationController.BoolAnimation("Shake", false);
+        
     }
 
     public void StopSlapping()
     {
-        EnemyAnimationController.BoolAnimation("Slap", false);
+        if(Input.GetMouseButton(0))
+        AnimationController.BoolAnimation("Slap", false);
+        AnimationController.BoolAnimation("Shake", true) ;
     }
 
 
