@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private LaneRunner _laneRunner;
     private AnimationController _animationController;
     private Stamina _stamina;
+    private Health _health;
+   
     
     
     
@@ -17,9 +19,11 @@ public class PlayerController : MonoBehaviour
    
     public LaneRunner LaneRunner { get { return _laneRunner == null ? GetComponent<LaneRunner>() : _laneRunner;} } //bu da oluyor farkini sor.
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
+    public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
     
 
     private bool _isSlapping;
+    private bool _isRegenerated;
 
     public bool IsTriggered;
     public bool IsControlable;
@@ -32,6 +36,9 @@ public class PlayerController : MonoBehaviour
              return;
         Move();
         Stop();
+
+        if (_isRegenerated)
+        Stamina.StaminaRegen();
     }
 
 
@@ -57,20 +64,21 @@ public class PlayerController : MonoBehaviour
             {
                 AnimationController.BoolAnimation("Slap", true);
                 Stamina.StaminaDrain();
-                IsEnemysTurn = false;
+               
+                _isRegenerated = false;
 
             }
-            else if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 AnimationController.BoolAnimation("Slap", false);
-                Stamina.StaminaRegen();
-                IsEnemysTurn = true;
-
-
+                _isRegenerated = true;
+                
             }
         }
         
     }
+
+    
 
     
 

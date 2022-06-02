@@ -35,12 +35,7 @@ public class Stamina : MonoBehaviour
 
     public void StaminaRegen()
     {
-        if (!PlayerController.IsControlable)
-            return;
-
-        if (!IsRegenerated)
-            return;
-
+     
         if (CurrentStamina < MaxStamina)
         {
             CurrentStamina += Time.deltaTime * StaminaRegenMultiplier;

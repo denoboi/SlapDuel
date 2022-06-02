@@ -4,36 +4,15 @@ using UnityEngine;
 
 public class Slapper : MonoBehaviour
 {
-    private AIController _aiController;
-
-    public AIController AIController { get { return _aiController == null ? _aiController = GetComponentInParent<AIController>() : _aiController; } }
+    public Health Health;
    
     private void OnTriggerEnter(Collider other)
     {
-        Health health = other.GetComponentInParent<Health>(); //Bizim karakterdeki slapper digerinin health'ini aliyor. Diger karakterdeki slapper'da bizim health'i gorecek.
-        AIController aIController = other.GetComponentInParent<AIController>();
-        PlayerController playerController = GetComponentInParent<PlayerController>();
+        Health health = other.GetComponentInParent<Health>();
 
-        if(Input.GetMouseButton(0))
-        {
-            health.HealthDrain();
-            Debug.Log("Health -: " + gameObject.name);
-            playerController.IsEnemysTurn = false;
-            aIController.StopSlapping();
-            
-        }
-        if (!playerController.IsEnemysTurn)
+        if (health == Health)
             return;
-        {
-            
-            aIController.Slapping();
-            
-            health.HealthDrain();
-            
-            Debug.Log("Enemy's Turn");
 
-            
-        }
-        
+          health.HealthDrain();
     }
 }

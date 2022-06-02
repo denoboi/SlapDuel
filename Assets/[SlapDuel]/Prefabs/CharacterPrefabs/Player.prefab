@@ -885,6 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsTriggered: 0
   IsControlable: 0
+  IsEnemysTurn: 0
 --- !u!114 &6781392756500075850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 100
   MaxHealth: 100
-  HealthDrainMultiplier: 10
+  HealthDrainMultiplier: 100
 --- !u!1 &3076014480209854707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3076014480209632433}
     m_Modifications:
+    - target: {fileID: 5448606099445831864, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
+      propertyPath: Health
+      value: 
+      objectReference: {fileID: 7090358864256933854}
     - target: {fileID: 8688962393906455337, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: m_RootOrder
       value: 2
