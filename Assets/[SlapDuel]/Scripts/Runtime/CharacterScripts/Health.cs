@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    [HideInInspector]
+    public UnityEvent OnGetDamage = new UnityEvent();
+
     [Header("Health Main Parameters")]
     public float CurrentHealth = 100.0f;
 
@@ -22,6 +26,8 @@ public class Health : MonoBehaviour
             CurrentHealth = 0;
             Debug.Log("EnemyBoom " + gameObject.name) ;
         }
+
+        OnGetDamage.Invoke();
     }
     
 }

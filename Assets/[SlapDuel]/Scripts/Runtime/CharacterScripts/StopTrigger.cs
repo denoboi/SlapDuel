@@ -3,20 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Forever;
 
-public class StopTrigger : MonoBehaviour
+public class StopTrigger : MonoBehaviour //canPunch true iken atabilecek hale gelecek  
 {
+    //son yedigi dayagi tutacak, time.deltatime, recovery time
+
+    //public propert isActivated get private set.
+
+
+    private AIController _aIController;
+
+    public AIController AIController { get { return _aIController == null ? _aIController = GetComponentInParent<AIController>() : _aIController; } }
 
     private void OnTriggerEnter(Collider other)
     {
-        LaneRunner laneRunner = other.GetComponentInParent<LaneRunner>();
-        PlayerController playerController = other.GetComponentInParent<PlayerController>();
+        if (AIController.IsActivated) //mami
+            return;
 
-        if (laneRunner == null)
+        PlayerController playerController = other.GetComponentInParent<PlayerController>();
+       
+        if (playerController == null)
             return;
         
         playerController.IsTriggered = true;
+        AIController.Activate();
 
-       
+
         Debug.Log("triggered" + other.gameObject);
 
     }

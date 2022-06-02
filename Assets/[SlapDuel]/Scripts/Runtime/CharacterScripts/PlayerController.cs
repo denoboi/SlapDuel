@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsTriggered;
     public bool IsControlable;
-    public bool IsEnemysTurn;
+    
 
   
     private void Update()
@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
             {
                 AnimationController.BoolAnimation("Slap", false);
                 _isRegenerated = true;
+                
+                
                 
             }
         }

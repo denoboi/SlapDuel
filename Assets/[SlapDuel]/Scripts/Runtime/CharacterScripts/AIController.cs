@@ -4,43 +4,61 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-
+    public PlayerController PlayerController { get; set; } //mert
    
     private Stamina _stamina;
     private AnimationController _animationController;
-    
-   
+    private Health _health;
 
+    [SerializeField] private float _recoveryTime; 
+    public bool IsActivated { get; private set;}
+    public bool CanPunch { get; private set; }
+
+    private float _lastTakeDamageTime;
+    private bool _isPunching = true;
+
+    public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
 
+    private void OnEnable()
+    {
+        Health.OnGetDamage.AddListener(OnTakeDamage);
+    }
+
+    private void OnDisable()
+    {
+        Health.OnGetDamage.RemoveListener(OnTakeDamage);
+    }
 
     private void Update()
     {
-        Slapping();
-        StopSlapping();
-   
+        
+            Slapping();
+
     }
 
     public void Slapping()
     {
-        if(Input.GetMouseButtonUp(0))
-       AnimationController.BoolAnimation("Slap", true);
-        AnimationController.BoolAnimation("Shake", false);
         
+        AnimationController.TriggerAnimation("Slap");
+
+       
+            AnimationController.TriggerAnimation("Idle");
     }
 
-    public void StopSlapping()
+
+
+    public void Activate() //mami  //bu activate'i ai ilk kez girdiginde kullanabiliriz.
     {
-        if(Input.GetMouseButton(0))
-        AnimationController.BoolAnimation("Slap", false);
-        AnimationController.BoolAnimation("Shake", true) ;
+        IsActivated = true;
     }
 
+    private void OnTakeDamage()
+    {
+        _lastTakeDamageTime = Time.time;
 
-    
-
-
+    }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slapper : MonoBehaviour
 {
-    public Health Health;
+    public Health Health; //mert
    
     private void OnTriggerEnter(Collider other)
     {
