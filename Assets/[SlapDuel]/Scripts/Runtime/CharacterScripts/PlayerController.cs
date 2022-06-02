@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 IsEnemysTurn = false;
 
             }
-            if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0))
             {
                 AnimationController.BoolAnimation("Slap", false);
                 Stamina.StaminaRegen();
@@ -69,8 +69,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else
-            return;
+        
     }
 
     

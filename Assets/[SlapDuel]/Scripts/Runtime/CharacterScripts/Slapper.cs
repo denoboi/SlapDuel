@@ -19,10 +19,11 @@ public class Slapper : MonoBehaviour
             health.HealthDrain();
             Debug.Log("Health -: " + gameObject.name);
             playerController.IsEnemysTurn = false;
-            AIController.StopSlapping();
+            aIController.StopSlapping();
             
         }
-        if (playerController.IsEnemysTurn)
+        if (!playerController.IsEnemysTurn)
+            return;
         {
             
             aIController.Slapping();
