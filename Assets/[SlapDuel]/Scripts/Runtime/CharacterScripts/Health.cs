@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
 
     [Header("Stamina Regeneration Parameters")]
 
-    [Range(100f, 450f)] public float HealthDrainMultiplier;
+    [Range(100f, 1000f)] public float HealthDrainMultiplier;
 
     public void HealthDrain()
     {

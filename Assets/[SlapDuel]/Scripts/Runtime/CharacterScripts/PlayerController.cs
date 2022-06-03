@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Forever;
 using HCB.Core;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,16 +18,25 @@ public class PlayerController : MonoBehaviour
     public LaneRunner LaneRunner { get { return _laneRunner == null ? GetComponent<LaneRunner>() : _laneRunner;} } //bu da oluyor farkini sor.
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
-    
 
-    
     private bool _isRegenerated;
 
-    public bool IsTriggered;
+    public bool IsTriggered { get; set; }
     public bool IsControlable;
-    
 
-  
+    private void OnEnable()
+    {
+        Events.OnAIDie.AddListener(OnAiDie); 
+    }
+
+   
+
+    private void OnDisable()
+    {
+        Events.OnAIDie.RemoveListener(OnAiDie);
+    }
+
+
     private void Update()
     {
         if (!LevelManager.Instance.IsLevelStarted)
@@ -41,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        
         if (IsTriggered)
             return;
         LaneRunner.follow = true;
@@ -50,8 +59,8 @@ public class PlayerController : MonoBehaviour
 
     private void Stop()
     {
-        if (IsTriggered)
-        {
+        if (!IsTriggered)
+            return;
             LaneRunner.follow = false;
             AnimationController.TriggerAnimation("Idle");
 
@@ -68,17 +77,20 @@ public class PlayerController : MonoBehaviour
             {
                 AnimationController.BoolAnimation("Slap", false);
                 _isRegenerated = true;
-                
-                
-                
             }
-        }
+
+
+    }
+
+    private void OnAiDie()
+    {
+        Invoke("OnAiDie", 2);
+        IsTriggered = false;
         
     }
 
-    
 
-    
+
 
 
 

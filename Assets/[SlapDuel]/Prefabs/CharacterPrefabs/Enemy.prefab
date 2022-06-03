@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45b449bfddbcb748b4489be1f9c5096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoveryTime: 0.0002
+  _recoveryTime: 2
 --- !u!114 &8654569816515044704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
       m_Calls: []
   CurrentHealth: 100
   MaxHealth: 100
-  HealthDrainMultiplier: 150
+  HealthDrainMultiplier: 1000
 --- !u!54 &5726658547155686470
 Rigidbody:
   m_ObjectHideFlags: 0
