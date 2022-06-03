@@ -96,8 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         IsTriggered = false;
-        AnimationController.BoolAnimation("Slap", false);
-        AnimationController.TriggerAnimation("Run");
 
     }
 
