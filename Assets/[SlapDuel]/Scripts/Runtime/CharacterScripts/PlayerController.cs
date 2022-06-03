@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (IsTriggered)
             return;
         LaneRunner.follow = true;
-        AnimationController.TriggerAnimation("Run");
+        AnimationController.FloatAnimation("Speed", 1);
     }
 
     private void Stop()
@@ -64,7 +64,8 @@ public class PlayerController : MonoBehaviour
 
        
             LaneRunner.follow = false;
-            AnimationController.TriggerAnimation("Idle");
+            AnimationController.FloatAnimation("Speed", 0);
+        
 
 
             if (Input.GetMouseButton(0))

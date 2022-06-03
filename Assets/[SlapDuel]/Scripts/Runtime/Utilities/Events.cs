@@ -8,4 +8,5 @@ public static class Events
     //Use this event manager for your custom ingame events.
 
     public static UnityEvent OnAIDie = new UnityEvent();
+    public static UnityEvent OnAITriggered = new UnityEvent();
 }
