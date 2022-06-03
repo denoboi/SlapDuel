@@ -85,7 +85,7 @@ public class AIController : MonoBehaviour
         _lastTakeDamageTime = Time.time;
         if(Health.CurrentHealth <= 0)
         {
-            //Dead animation.
+            //AI Dead animation.
             Events.OnAIDie.Invoke();
         }
 

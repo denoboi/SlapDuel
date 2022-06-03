@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _isRegenerated;
 
-    public bool IsTriggered { get; set; }
+   [SerializeField] public bool IsTriggered { get; set; }
     public bool IsControlable;
 
     private void OnEnable()
@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsTriggered)
             return;
+
+       
             LaneRunner.follow = false;
             AnimationController.TriggerAnimation("Idle");
 
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 _isRegenerated = false;
 
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
             {
                 AnimationController.BoolAnimation("Slap", false);
                 _isRegenerated = true;
@@ -84,9 +86,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnAiDie()
     {
-        Invoke("OnAiDie", 2);
+
+        StartCoroutine(OnAIDieCo());
+
+    }
+
+    IEnumerator OnAIDieCo()
+    {
+        yield return new WaitForSeconds(2);
         IsTriggered = false;
-        
+        AnimationController.BoolAnimation("Slap", false);
+        AnimationController.TriggerAnimation("Run");
+
     }
 
 
