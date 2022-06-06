@@ -26,6 +26,7 @@ public class StopTrigger : MonoBehaviour //canPunch true iken atabilecek hale ge
         if (playerController == null)
             return;
 
+        AIController.AnimationController.TriggerAnimation("Slap");
         
         AIController.Activate();
         playerController.IsTriggered = true;

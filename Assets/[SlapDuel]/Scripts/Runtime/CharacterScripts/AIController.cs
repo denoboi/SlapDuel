@@ -61,14 +61,14 @@ public class AIController : MonoBehaviour
 
     }
 
-    public void Slapping()
+    private void Slapping()
     {
         
         AnimationController.TriggerAnimation("Slap");
 
     }
 
-    public void StopSlapping()
+    private void StopSlapping()
     {
         AnimationController.TriggerAnimation("Idle");
     }

@@ -18,6 +18,7 @@ public class HitDetectorAnimationController : MonoBehaviour
     {
         SphereCollider.enabled = true;
         
+        
     }
 
     public void StopHit()

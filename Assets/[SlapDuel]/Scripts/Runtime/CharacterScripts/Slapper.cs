@@ -9,11 +9,13 @@ public class Slapper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Health health = other.GetComponentInParent<Health>();
+        AnimationController animationController = other.GetComponentInParent<AnimationController>();
 
         if (health == Health)
             return;
 
            
           health.HealthDrain();
+            animationController.TriggerAnimation("Shake");
     }
 }

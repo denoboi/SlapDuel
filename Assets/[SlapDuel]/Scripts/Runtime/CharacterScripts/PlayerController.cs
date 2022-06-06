@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                AnimationController.BoolAnimation("Slap", true);
+                AnimationController.TriggerAnimation("Slap");
                 Stamina.StaminaDrain();
                 
                 _isRegenerated = false;
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
             {
-                AnimationController.BoolAnimation("Slap", false);
+                AnimationController.TriggerAnimation("Idle");
                 _isRegenerated = true;
             }
 
@@ -87,15 +87,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnAiDie()
     {
-
         StartCoroutine(OnAIDieCo());
-
     }
 
     IEnumerator OnAIDieCo()
     {
         yield return new WaitForSeconds(2);
         IsTriggered = false;
+        //death animation will be added
 
     }
 
