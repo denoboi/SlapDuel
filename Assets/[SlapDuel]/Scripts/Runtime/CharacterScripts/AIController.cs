@@ -64,13 +64,13 @@ public class AIController : MonoBehaviour
     private void Slapping()
     {
         
-        AnimationController.TriggerAnimation("Slap");
+        AnimationController.FloatAnimation("Slap",0.1f);
 
     }
 
     private void StopSlapping()
     {
-        AnimationController.TriggerAnimation("Idle");
+        AnimationController.FloatAnimation("Slap",0f);
     }
 
 
