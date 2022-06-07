@@ -267,7 +267,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 73c1f0714db552a47ad383e2899e04e2, type: 3}
+  - {fileID: 2100000, guid: 33b82b7aa1e03ef43bb885d22974777d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -375,7 +375,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Height: 1.86
   m_Direction: 2
   m_Center: {x: 0, y: 0.05, z: -0.87}
@@ -751,6 +751,7 @@ GameObject:
   - component: {fileID: 3877405558246616461}
   - component: {fileID: 7090358864256933854}
   - component: {fileID: 3777540723506932428}
+  - component: {fileID: 8196556703301898946}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -877,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eabd1137d914d64d84a6cb2e425de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsControlable: 0
+  IsControlable: 1
 --- !u!114 &6781392756500075850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,6 +936,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a97062a63d09594e84d8a6618c2067d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8196556703301898946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076014480209854705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313972b648c4ea24d87f0cb68578a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3296326455790913709
