@@ -27,6 +27,7 @@ public class Stamina : MonoBehaviour
 
         if (CurrentStamina <= 0)
         {
+            
             CurrentStamina = 0f;
             Debug.Log("Boom");
         }

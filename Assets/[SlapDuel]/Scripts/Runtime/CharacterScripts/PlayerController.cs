@@ -65,18 +65,24 @@ public class PlayerController : MonoBehaviour
        
             LaneRunner.follow = false;
             AnimationController.FloatAnimation("Speed", 0);
-        
+       
+       
+        if (Input.GetMouseButtonDown(0))
+        {
+             
+            AnimationController.FloatAnimation("Slap", 0.1f);
+        }
 
 
             if (Input.GetMouseButton(0))
             {
-                AnimationController.FloatAnimation("Slap", 0.1f);
+                
                 Stamina.StaminaDrain();
                 
                 _isRegenerated = false;
 
             }
-            if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
+            else if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
             {
             AnimationController.FloatAnimation("Slap", 0f);
                 
