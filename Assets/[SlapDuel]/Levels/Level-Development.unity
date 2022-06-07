@@ -718,6 +718,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.11
       objectReference: {fileID: 0}
+    - target: {fileID: 1309650676030026158, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5235f82a8f42d8d4b85ec7a3660022db, type: 2}
     - target: {fileID: 3076014480200348511, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
       propertyPath: m_Avatar
       value: 
