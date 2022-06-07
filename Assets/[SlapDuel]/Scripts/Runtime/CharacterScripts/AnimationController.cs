@@ -9,13 +9,21 @@ public class AnimationController : MonoBehaviour
     //buna playercontroller'da ulasmak icin public yaptik asagida da metod olusturduk.
     public Animator Animator => _animator == null ? _animator = GetComponent<Animator>() : _animator;
 
-   
+    private Stamina _stamina;
+    
+    public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
     public void TriggerAnimation(string ID)
     {
         Animator.SetTrigger(ID);
     }
 
+    private void Update()
+    {
+       if( Stamina == null)
+            return;
+        Animator.SetFloat("Stamina", Stamina.CurrentStamina); //mert 
+    }
 
     public void BoolAnimation(string ID, bool value)
     {

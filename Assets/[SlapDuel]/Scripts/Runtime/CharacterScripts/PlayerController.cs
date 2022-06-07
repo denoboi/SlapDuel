@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
        
         if (Input.GetMouseButtonDown(0))
         {
-             
+            
             AnimationController.FloatAnimation("Slap", 0.1f);
         }
 
