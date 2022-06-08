@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Collider MainCollider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
