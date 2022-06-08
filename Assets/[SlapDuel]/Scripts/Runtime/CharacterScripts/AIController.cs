@@ -96,8 +96,8 @@ public class AIController : MonoBehaviour
 
         if (Health.CurrentHealth <= 0)
         {
-           
-            AI.DoRagdoll(true);
+
+            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 250);
             //AI Dead animation.
             Events.OnAIDie.Invoke();
 

@@ -16,8 +16,8 @@ public class AI : MonoBehaviour
 
     public void DoRagdoll(bool isRagdoll)
     {
-        foreach (var col in AllColliders) //tum collider'lari gezecek ve eger ragdoll modundaysak tum hepsinin collider'larini acacak
-            col.enabled = isRagdoll;
+        foreach (var deniz in AllColliders) //tum collider'lari gezecek ve eger ragdoll modundaysak tum hepsinin collider'larini acacak
+            deniz.enabled = isRagdoll;
 
         MainCollider.enabled = !isRagdoll; //ragdoll degilsek sadece maincollider acik kalacak
         GetComponent<Rigidbody>().useGravity = !isRagdoll;
@@ -25,10 +25,6 @@ public class AI : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        
-    }
 }
 
 

@@ -8,9 +8,15 @@ public class Slapper : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
+        
         Health health = other.GetComponentInParent<Health>();
         AnimationController animationController = other.GetComponentInParent<AnimationController>();
-       
+
+        if (other.gameObject.layer == 10) //ragdoll ise return
+            return;
+
+        if (health == null)
+            return;
 
         if (health == Health)
             return;
@@ -18,7 +24,8 @@ public class Slapper : MonoBehaviour
            
           health.HealthDrain();
          animationController.TriggerAnimation("Shake");
-            Debug.Log("hit");
+            Debug.Log("hit :" + other.gameObject.name);
+            
        
     }
 }
