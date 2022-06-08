@@ -33394,7 +33394,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4292872
+  - time: 0.33333334
     functionName: StopHit
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -5,25 +5,25 @@ using UnityEngine;
 public class HitDetectorAnimationController : MonoBehaviour
 {
     private Animator _animator;
-    private SphereCollider _sphereCollider;
+    private Slapper _slapper;
    
     public Animator Animator => _animator == null ? _animator = GetComponent<Animator>() : _animator;
-    public SphereCollider SphereCollider { get { return _sphereCollider == null ? _sphereCollider = GetComponentInChildren<SphereCollider>() : _sphereCollider; } }
+    public Slapper Slapper { get { return _slapper == null ? _slapper = GetComponentInChildren<Slapper>() : _slapper; } }
 
     private void Awake()
     {
-        SphereCollider.enabled = false;
+        Slapper.GetComponent<SphereCollider>().enabled = false;
     }
     public void StartHit()
     {
-        SphereCollider.enabled = true;
+        Slapper.GetComponent<SphereCollider>().enabled = true;
         
         
     }
 
     public void StopHit()
     {
-        SphereCollider.enabled = false;
+        Slapper.GetComponent<SphereCollider>().enabled = false;
     }
 
     

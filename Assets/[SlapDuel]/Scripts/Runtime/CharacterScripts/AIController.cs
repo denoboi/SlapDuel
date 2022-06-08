@@ -15,6 +15,7 @@ public class AIController : MonoBehaviour
     private AnimationController _animationController;
     private Health _health;
     private CapsuleCollider _capsuleCollider;
+    private AI _ai;
 
     [SerializeField] private float _recoveryTime;
     private float _lastTakeDamageTime = Mathf.Infinity;
@@ -28,6 +29,8 @@ public class AIController : MonoBehaviour
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
+
+   public AI AI { get { return _ai == null ? _ai = GetComponent<AI>() : _ai; } }  //for ragdoll
 
     private void OnEnable()
     {
@@ -85,8 +88,10 @@ public class AIController : MonoBehaviour
         _lastTakeDamageTime = Time.time;
         if(Health.CurrentHealth <= 0)
         {
+            AI.DoRagdoll(true);
             //AI Dead animation.
             Events.OnAIDie.Invoke();
+
         }
 
     }

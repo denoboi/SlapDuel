@@ -10,12 +10,15 @@ public class Slapper : MonoBehaviour
     {
         Health health = other.GetComponentInParent<Health>();
         AnimationController animationController = other.GetComponentInParent<AnimationController>();
+       
 
         if (health == Health)
             return;
 
            
           health.HealthDrain();
-            animationController.TriggerAnimation("Shake");
+         animationController.TriggerAnimation("Shake");
+        Debug.Log("hit");
+       
     }
 }
