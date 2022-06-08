@@ -18,7 +18,7 @@ public class Slapper : MonoBehaviour
            
           health.HealthDrain();
          animationController.TriggerAnimation("Shake");
-        Debug.Log("hit");
+            Debug.Log("hit");
        
     }
 }

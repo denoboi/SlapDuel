@@ -1008,7 +1008,7 @@ MonoBehaviour:
   CurrentStamina: 100
   MaxStamina: 100
   IsRegenerated: 0
-  StaminaDrainMultiplier: 7.57
+  StaminaDrainMultiplier: 15
   StaminaRegenMultiplier: 5.06
 --- !u!114 &7090358864256933854
 MonoBehaviour:
@@ -1027,7 +1027,7 @@ MonoBehaviour:
       m_Calls: []
   CurrentHealth: 100
   MaxHealth: 100
-  HealthDrainMultiplier: 100
+  HealthDrainMultiplier: 577
 --- !u!114 &3777540723506932428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1579,6 +1579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c4caae363247145b2b68f5a23ad37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentHealthPlayer: 0
+  CurrentHealthEnemy: 0
 --- !u!1 &4643612736927638137
 GameObject:
   m_ObjectHideFlags: 0

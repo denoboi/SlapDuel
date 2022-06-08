@@ -9,4 +9,5 @@ public static class Events
 
     public static UnityEvent OnAIDie = new UnityEvent();
     public static UnityEvent OnAITriggered = new UnityEvent();
+    public static UnityEvent OnPlayerSlapping = new UnityEvent();
 }

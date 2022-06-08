@@ -71,12 +71,13 @@ public class PlayerController : MonoBehaviour
         {
             
             AnimationController.FloatAnimation("Slap", 0.1f);
+            
         }
 
 
             if (Input.GetMouseButton(0))
             {
-                
+                Events.OnPlayerSlapping.Invoke();
                 Stamina.StaminaDrain();
                 
                 _isRegenerated = false;
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
             {
-            AnimationController.FloatAnimation("Slap", 0f);
+                AnimationController.FloatAnimation("Slap", 0f);
                 
                 _isRegenerated = true;
             }
