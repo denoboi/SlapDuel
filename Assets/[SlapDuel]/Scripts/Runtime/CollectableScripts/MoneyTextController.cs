@@ -15,6 +15,7 @@ public class MoneyTextController : MonoBehaviour
     {
         Events.OnPlayerSlapping.AddListener(UpdateText);
         SceneController.Instance.OnSceneLoaded.AddListener(UpdateText);
+        EventManager.OnPlayerDataChange.AddListener(UpdateText);
         
     }
 
@@ -26,6 +27,8 @@ public class MoneyTextController : MonoBehaviour
         Events.OnPlayerSlapping.RemoveListener(UpdateText);
 
         SceneController.Instance.OnSceneLoaded.RemoveListener(UpdateText);
+
+        EventManager.OnPlayerDataChange.RemoveListener(UpdateText);
     }
 
 

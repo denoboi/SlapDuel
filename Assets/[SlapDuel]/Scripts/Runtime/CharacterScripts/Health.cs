@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     [HideInInspector]
     public UnityEvent OnGetDamage = new UnityEvent();
+    public UnityEvent PlayerOnGetDamage = new UnityEvent();
 
     [Header("Health Main Parameters")]
     public float CurrentHealth = 100.0f;
@@ -31,6 +32,7 @@ public class Health : MonoBehaviour
         }
 
         OnGetDamage.Invoke();
+        PlayerOnGetDamage.Invoke();
     }
     
 }

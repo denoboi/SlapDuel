@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        Events.OnAIDie.AddListener(OnAiDie); 
+        Events.OnAIDie.AddListener(OnAiDie);
+        Health.PlayerOnGetDamage.AddListener(OnPlayerDie);
     }
 
    
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         Events.OnAIDie.RemoveListener(OnAiDie);
+        Health.PlayerOnGetDamage.RemoveListener(OnPlayerDie);
     }
 
 
@@ -110,6 +112,18 @@ public class PlayerController : MonoBehaviour
         IsTriggered = false;
         //death animation will be added
 
+    }
+
+    private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
+    {
+        if(Health.CurrentHealth <= 0)
+        {
+            //AI controller'dan slap duracak.
+            GameManager.Instance.CompeleteStage(false); // yield return ile daha yavas bitirilebilir.
+            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 350);
+            GetComponent<CapsuleCollider>().enabled = false;
+        }
+     
     }
 
 
