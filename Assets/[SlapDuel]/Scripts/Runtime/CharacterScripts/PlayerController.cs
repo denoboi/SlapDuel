@@ -12,12 +12,15 @@ public class PlayerController : MonoBehaviour
     private AnimationController _animationController;
     private Stamina _stamina;
     private Health _health;
+    private IncomeManager _incomeManager;
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
    
     public LaneRunner LaneRunner { get { return _laneRunner == null ? GetComponent<LaneRunner>() : _laneRunner;} } //bu da oluyor farkini sor.
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
+    public IncomeManager IncomeManager { get { return _incomeManager == null ? _incomeManager = GetComponent<IncomeManager>() : _incomeManager; } }
+
 
     private bool _isRegenerated;
 
@@ -79,8 +82,11 @@ public class PlayerController : MonoBehaviour
             {
                 AnimationController.FloatAnimation("Slap", 0.1f);
                 Stamina.StaminaDrain();
+
+                Events.OnPlayerSlapping.Invoke();
                 
-                _isRegenerated = false;
+
+            _isRegenerated = false;
 
             }
             else if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)

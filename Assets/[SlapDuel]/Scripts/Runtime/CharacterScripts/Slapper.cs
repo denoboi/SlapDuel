@@ -21,8 +21,8 @@ public class Slapper : MonoBehaviour
         if (health == Health)
             return;
 
-           
-          health.HealthDrain();
+        
+        health.HealthDrain();
          animationController.TriggerAnimation("Shake");
             Debug.Log("hit :" + other.gameObject.name);
             

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using HCB.Core;
 
 public class AIController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class AIController : MonoBehaviour
     private Health _health;
     private AI _ai;
     private Slapper _slapper;
+    private IncomeManager _incomeManager;
 
    
 
@@ -34,6 +36,9 @@ public class AIController : MonoBehaviour
     public Slapper Slapper { get { return _slapper == null ? _slapper = GetComponentInChildren<Slapper>() : _slapper; } } //this is for disable the collider when player hits.
 
     public AI AI { get { return _ai == null ? _ai = GetComponent<AI>() : _ai; } }  //for ragdoll
+
+    public IncomeManager IncomeManager { get { return _incomeManager == null ? _incomeManager = GetComponent<IncomeManager>() : _incomeManager; } }
+
 
     private void OnEnable()
     {
@@ -90,7 +95,7 @@ public class AIController : MonoBehaviour
     private void OnTakeDamage() //mami
     {
         _lastTakeDamageTime = Time.time;
-        
+        GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] += (float)IncomeManager.IdleStat.CurrentValue;
 
         if (Health.CurrentHealth <= 0)
         {
