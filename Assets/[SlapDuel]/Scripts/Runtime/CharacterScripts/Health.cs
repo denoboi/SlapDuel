@@ -13,9 +13,12 @@ public class Health : MonoBehaviour
 
     public float MaxHealth = 100.0f;
 
-    [Header("Stamina Regeneration Parameters")]
+    
+
+    [Header("Health Multiplier Parameters")]
 
     [Range(100f, 1000f)] public float HealthDrainMultiplier;
+    private float _power;
 
     public void HealthDrain()
     {

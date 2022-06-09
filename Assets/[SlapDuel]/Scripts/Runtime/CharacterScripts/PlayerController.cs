@@ -70,14 +70,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             
-            AnimationController.FloatAnimation("Slap", 0.1f);
+            
             
         }
 
 
             if (Input.GetMouseButton(0))
             {
-                Events.OnPlayerSlapping.Invoke();
+                AnimationController.FloatAnimation("Slap", 0.1f);
                 Stamina.StaminaDrain();
                 
                 _isRegenerated = false;
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator OnAIDieCo()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         IsTriggered = false;
         //death animation will be added
 

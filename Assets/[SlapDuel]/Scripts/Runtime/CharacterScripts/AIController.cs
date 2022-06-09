@@ -38,14 +38,12 @@ public class AIController : MonoBehaviour
     private void OnEnable()
     {
         Health.OnGetDamage.AddListener(OnTakeDamage);
-        Events.OnPlayerSlapping.AddListener(DisableColliderWhenHit);
+        
     }
 
     private void OnDisable()
     {
         Health.OnGetDamage.RemoveListener(OnTakeDamage);
-        Events.OnPlayerSlapping.AddListener(DisableColliderWhenHit);
-
     }
 
     private void Update()
@@ -104,12 +102,5 @@ public class AIController : MonoBehaviour
         }
 
     }
-
-    private void DisableColliderWhenHit()
-    {
-        Slapper.GetComponent<SphereCollider>().enabled = false;
-    }
-
-   
 
 }
