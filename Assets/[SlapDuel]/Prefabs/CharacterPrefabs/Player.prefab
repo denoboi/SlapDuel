@@ -854,6 +854,7 @@ GameObject:
   - component: {fileID: 3777540723506932428}
   - component: {fileID: 8196556703301898946}
   - component: {fileID: 6295191637130030816}
+  - component: {fileID: 7981026259752161447}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1029,6 +1030,7 @@ MonoBehaviour:
   CurrentHealth: 100
   MaxHealth: 100
   HealthDrainMultiplier: 577
+  Power: 1
 --- !u!114 &3777540723506932428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,6 +1068,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleStat: {fileID: 11400000, guid: c3905ae48b006924586fdd78cb7bfb3b, type: 2}
+--- !u!114 &7981026259752161447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076014480209854705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2948348aee4ab6479347e73d8f27aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleStat: {fileID: 11400000, guid: c1b36887de0fb88418e876f170b56621, type: 2}
 --- !u!1 &3296326455790913709
 GameObject:
   m_ObjectHideFlags: 0

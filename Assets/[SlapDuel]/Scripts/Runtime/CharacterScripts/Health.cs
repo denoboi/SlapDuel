@@ -18,11 +18,11 @@ public class Health : MonoBehaviour
     [Header("Health Multiplier Parameters")]
 
     [Range(100f, 1000f)] public float HealthDrainMultiplier;
-    private float _power;
+    public float PlayerPower = 1;
 
     public void HealthDrain()
     {
-        CurrentHealth -= Time.deltaTime * HealthDrainMultiplier;
+        CurrentHealth -= Time.deltaTime * HealthDrainMultiplier * PlayerPower;
 
         if(CurrentHealth <= 0)
         {

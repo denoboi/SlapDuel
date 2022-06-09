@@ -23,7 +23,7 @@ public class AIController : MonoBehaviour
     private float _lastTakeDamageTime = Mathf.Infinity;
 
     public bool IsActivated { get; private set;}
-    public bool CanPunch { get; private set; }
+    public bool CanPunch { get; set; }
     
 
    

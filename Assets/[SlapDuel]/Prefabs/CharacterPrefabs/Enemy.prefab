@@ -1370,6 +1370,7 @@ GameObject:
   - component: {fileID: 1344005937}
   - component: {fileID: 1344005936}
   - component: {fileID: 190704227328845043}
+  - component: {fileID: 5642060048557528670}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1424,7 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45b449bfddbcb748b4489be1f9c5096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoveryTime: 1
+  _recoveryTime: 1.5
 --- !u!114 &8654569816515044704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1455,6 +1456,7 @@ MonoBehaviour:
   CurrentHealth: 100
   MaxHealth: 100
   HealthDrainMultiplier: 1000
+  Power: 1
 --- !u!54 &5726658547155686470
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1536,6 +1538,19 @@ MonoBehaviour:
   CharacterLayerIndex: 9
   RagdollLayerIndex: 10
   Ragdolls: []
+--- !u!114 &5642060048557528670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3500566397226646423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2948348aee4ab6479347e73d8f27aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleStat: {fileID: 11400000, guid: c1b36887de0fb88418e876f170b56621, type: 2}
 --- !u!1 &3704999298153041774
 GameObject:
   m_ObjectHideFlags: 0
