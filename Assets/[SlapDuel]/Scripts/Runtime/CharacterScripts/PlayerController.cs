@@ -90,13 +90,16 @@ public class PlayerController : MonoBehaviour
         if (isTired)
             return;
 
-        if (Input.GetMouseButtonDown(0) && IsTriggered)
+        if (!IsTriggered)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
         {
             AnimationController.TriggerAnimation("Slap");
         }
         
 
-        if (Input.GetMouseButton(0) && IsTriggered)
+        if (Input.GetMouseButton(0))
         {
             
             Stamina.StaminaDrain();
@@ -114,16 +117,15 @@ public class PlayerController : MonoBehaviour
 
     void Tired()
     {
-        if (isTired)
-            return;
-        if (Stamina.CurrentStamina < 5)
+        
+        if (Stamina.CurrentStamina <= 5)
         {
             AnimationController.TriggerAnimation("Tired");
             isTired = true;
             _isRegenerated = true;
         }
 
-        else if (Stamina.CurrentStamina > 5 && isTired)
+        if (Stamina.CurrentStamina > 5 && isTired)
             isTired = false;
 
     }
@@ -133,6 +135,8 @@ public class PlayerController : MonoBehaviour
         {
             IsTriggered = false;
             AnimationController.TriggerAnimation("Idle");
+            AnimationController.FloatAnimation("Speed", 1);
+        //yield return gelebilir.
         }
 
    
