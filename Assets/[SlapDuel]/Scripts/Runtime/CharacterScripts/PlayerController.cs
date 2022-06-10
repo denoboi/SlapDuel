@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
     private bool _isRegenerated;
 
    [SerializeField] public bool IsTriggered { get; set; }
+    public bool CanMove { get; private set; }
+
     public bool IsControlable;
+    private bool isTired;
 
     private void OnEnable()
     {
@@ -46,20 +49,26 @@ public class PlayerController : MonoBehaviour
     {
         if (!LevelManager.Instance.IsLevelStarted)
              return;
+
+
         Move();
         Stop();
+        Tired();
 
         if (_isRegenerated)
         Stamina.StaminaRegen();
+
     }
 
 
     private void Move()
     {
-        if (IsTriggered)
+        if (CanMove)
             return;
+      
         LaneRunner.follow = true;
         AnimationController.FloatAnimation("Speed", 1);
+        CanMove = true;
     }
 
     private void Stop()
@@ -67,52 +76,66 @@ public class PlayerController : MonoBehaviour
         if (!IsTriggered)
             return;
 
-       
             LaneRunner.follow = false;
             AnimationController.FloatAnimation("Speed", 0);
-       
-       
-        if (Input.GetMouseButtonDown(0))
+            CanMove = false;
+            
+
+        Slapping();
+    }
+
+
+    void Slapping()
+    {
+        if (isTired)
+            return;
+
+        if (Input.GetMouseButtonDown(0) && IsTriggered)
+        {
+            AnimationController.TriggerAnimation("Slap");
+        }
+        
+
+        if (Input.GetMouseButton(0) && IsTriggered)
         {
             
-            
-            
+            Stamina.StaminaDrain();
+            Events.OnPlayerSlapping.Invoke();
+            _isRegenerated = false;
         }
 
 
-            if (Input.GetMouseButton(0))
-            {
-                AnimationController.FloatAnimation("Slap", 0.1f);
-                Stamina.StaminaDrain();
-
-                Events.OnPlayerSlapping.Invoke();
-                
-
-            _isRegenerated = false;
-
-            }
-            else if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
-            {
-                AnimationController.FloatAnimation("Slap", 0f);
-                
-                _isRegenerated = true;
-            }
-
-
+        if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
+        {
+            AnimationController.TriggerAnimation("Idle");
+            _isRegenerated = true;
+        }
     }
 
-    private void OnAiDie()
+    void Tired()
     {
-        StartCoroutine(OnAIDieCo());
+        if (isTired)
+            return;
+        if (Stamina.CurrentStamina < 5)
+        {
+            AnimationController.TriggerAnimation("Tired");
+            isTired = true;
+            _isRegenerated = true;
+        }
+
+        else if (Stamina.CurrentStamina > 5 && isTired)
+            isTired = false;
+
     }
 
-    IEnumerator OnAIDieCo()
-    {
-        yield return new WaitForSeconds(1);
-        IsTriggered = false;
-        //death animation will be added
 
-    }
+        private void OnAiDie()
+        {
+            IsTriggered = false;
+            AnimationController.TriggerAnimation("Idle");
+        }
+
+   
 
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
@@ -126,18 +149,21 @@ public class PlayerController : MonoBehaviour
      
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45b449bfddbcb748b4489be1f9c5096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoveryTime: 1.5
+  _recoveryTime: 2
 --- !u!114 &8654569816515044704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,6 +1452,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnGetDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerOnGetDamage:
     m_PersistentCalls:
       m_Calls: []
   CurrentHealth: 100
