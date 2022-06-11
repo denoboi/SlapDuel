@@ -1345,10 +1345,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3076014480200348511, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: fa8bacf469d246f418fd52be6bf4c505, type: 3}
     - target: {fileID: 3076014480209632403, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1396,10 +1392,6 @@ PrefabInstance:
     - target: {fileID: 3076014480209854705, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900806393839142272, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}

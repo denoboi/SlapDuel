@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
         Stop();
+        StopSlapping();
         Tired();
 
         if (_isRegenerated)
@@ -88,26 +89,32 @@ public class PlayerController : MonoBehaviour
 
     void Slapping()
     {
-        if (isTired)
-            return;
+        
 
         if (!IsTriggered)
             return;
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (isTired)
+                return;
             AnimationController.TriggerAnimation("Slap");
         }
         
 
         if (Input.GetMouseButton(0))
         {
-            
+  
             Stamina.StaminaDrain();
             Events.OnPlayerSlapping.Invoke();
             _isRegenerated = false;
         }
 
+
+    }
+
+    void StopSlapping()
+    {
 
         if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
         {
@@ -119,15 +126,22 @@ public class PlayerController : MonoBehaviour
     void Tired()
     {
         
-        if (Stamina.CurrentStamina <= 5)
+        if (Stamina.CurrentStamina <= 10)
         {
-            AnimationController.TriggerAnimation("Tired");
+            Events.OnStaminaLow.Invoke();
+            //AnimationController.TriggerAnimation("Tired");
             isTired = true;
-            _isRegenerated = true;
+            AnimationController.TriggerAnimation("Idle");
+           
+            
         }
 
-        if (Stamina.CurrentStamina > 5 && isTired)
+         if (Stamina.CurrentStamina > 10 && isTired)
+        {
             isTired = false;
+            Events.OnStaminaNormal.Invoke();
+        }
+            
 
     }
 
@@ -135,7 +149,7 @@ public class PlayerController : MonoBehaviour
         IEnumerator OnAiDieCo()
         {
             yield return new WaitForSeconds(1);
-        IsTriggered = false;
+            IsTriggered = false;
             CanMove = false;
             AnimationController.TriggerAnimation("Idle");
             
