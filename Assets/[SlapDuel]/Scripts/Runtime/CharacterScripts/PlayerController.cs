@@ -151,6 +151,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
+
+        CinemachineShake.Instance.ShakeCamera(.3f, 1f);
+
         if(Health.CurrentHealth <= 0)
         {
             //AI controller'dan slap duracak.

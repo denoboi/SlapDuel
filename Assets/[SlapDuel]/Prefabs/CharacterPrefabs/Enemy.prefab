@@ -848,7 +848,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000021886086, y: 0.23093049, z: -0.0000002756714}
+  m_ConnectedAnchor: {x: 0.00000009778889, y: 0.23093046, z: -0.00000027939666}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1093,7 +1093,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000045634813, y: 0.23418249, z: 0.000000013387762}
+  m_ConnectedAnchor: {x: 0.000000015832486, y: 0.23418249, z: -0.00000022514723}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2174,7 +2174,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.10451025, y: -0.052128877, z: -0.0010719225}
+  m_ConnectedAnchor: {x: 0.10451025, y: -0.052128877, z: -0.0010721013}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3110,7 +3110,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.15626802, y: 0.21810418, z: -0.0010620641}
+  m_ConnectedAnchor: {x: -0.15626799, y: 0.21810415, z: -0.0010623025}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3471,7 +3471,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.10451019, y: -0.052128877, z: -0.0017064661}
+  m_ConnectedAnchor: {x: -0.10451019, y: -0.052128877, z: -0.0017062873}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3810,7 +3810,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5235f82a8f42d8d4b85ec7a3660022db, type: 2}
+  - {fileID: -9103484930961366303, guid: d2978de0c70374941892a82253257c1e, type: 3}
   - {fileID: 2100000, guid: 3843d4a236781f84f861496a7f5bf2e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4243,7 +4243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45b449bfddbcb748b4489be1f9c5096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoveryTime: 1.2
+  _recoveryTime: 1
 --- !u!114 &8654569816515044704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4326,7 +4326,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3500566397226646423}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
   m_Height: 1.7
@@ -4922,7 +4922,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 8.157936e-11, y: 0.202792, z: 0.0019042194}
+  m_ConnectedAnchor: {x: 8.158447e-11, y: 0.202792, z: 0.0019043386}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -5138,7 +5138,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000016763803, y: 0.23418191, z: 0.000000013387764}
+  m_ConnectedAnchor: {x: 0.00000003166496, y: 0.23418191, z: 0.000000072992414}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -7393,7 +7393,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.798989e-10, y: 0.3711575, z: -0.0015589786}
+  m_ConnectedAnchor: {x: 1.7718474e-10, y: 0.3711575, z: -0.0015590978}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -10870,7 +10870,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlapTrigger
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1314724092793539917, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
 --- !u!4 &9045299709360691030 stripped
 Transform:
