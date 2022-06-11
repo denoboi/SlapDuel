@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _isRegenerated;
 
+    
    [SerializeField] public bool IsTriggered { get; set; }
     public bool CanMove { get; private set; }
 
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
             CanMove = false;
             
 
-        Slapping();
+        Slapping(); // bu stoptan bagimsiz olabilir. Stop tek kez calisabilir update yerine.
     }
 
 
@@ -130,13 +131,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    
+        IEnumerator OnAiDieCo()
+        {
+            yield return new WaitForSeconds(1);
+        IsTriggered = false;
+            CanMove = false;
+            AnimationController.TriggerAnimation("Idle");
+            
+            AnimationController.FloatAnimation("Speed", 1);
+        }
 
         private void OnAiDie()
         {
-            IsTriggered = false;
-            AnimationController.TriggerAnimation("Idle");
-            AnimationController.FloatAnimation("Speed", 1);
-        //yield return gelebilir.
+            StartCoroutine(OnAiDieCo());
         }
 
    
@@ -152,6 +160,8 @@ public class PlayerController : MonoBehaviour
         }
      
     }
+
+
 
    
 }

@@ -90,6 +90,7 @@ public class AIController : MonoBehaviour
     public void Activate() //mami  //bu activate'i ai ilk kez girdiginde kullanabiliriz.
     {
         IsActivated = true;
+        AnimationController.FloatAnimation("Slap", 0.1f);
     }
 
     private void OnTakeDamage() //mami
