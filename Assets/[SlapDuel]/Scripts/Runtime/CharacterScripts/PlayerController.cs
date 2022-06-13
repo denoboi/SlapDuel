@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
         Stop();
+        Slapping();
         StopSlapping();
         Tired();
 
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
         LaneRunner.follow = true;
         AnimationController.FloatAnimation("Speed", 1);
         CanMove = true;
+        
     }
 
     private void Stop()
@@ -78,12 +80,15 @@ public class PlayerController : MonoBehaviour
         if (!IsTriggered)
             return;
 
-            LaneRunner.follow = false;
-            AnimationController.FloatAnimation("Speed", 0);
-            CanMove = false;
-            
 
-        Slapping(); // bu stoptan bagimsiz olabilir. Stop tek kez calisabilir update yerine.
+            LaneRunner.follow = false;
+            
+            CanMove = false;
+
+        AnimationController.FloatAnimation("Speed", 0);
+
+
+        // bu stoptan bagimsiz olabilir. Stop tek kez calisabilir update yerine.
     }
 
 
@@ -121,6 +126,9 @@ public class PlayerController : MonoBehaviour
             if (CanMove)
                 return;
 
+            if (!IsTriggered)
+                return;
+
             AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
         }
@@ -128,9 +136,12 @@ public class PlayerController : MonoBehaviour
 
     void Tired()
     {
+        if (CanMove)
+            return;
         
         if (Stamina.CurrentStamina <= 10)
         {
+            
             Events.OnStaminaLow.Invoke();
             //AnimationController.TriggerAnimation("Tired");
             isTired = true;
@@ -141,6 +152,7 @@ public class PlayerController : MonoBehaviour
 
          if (Stamina.CurrentStamina > 10 && isTired)
         {
+
             isTired = false;
             Events.OnStaminaNormal.Invoke();
         }
