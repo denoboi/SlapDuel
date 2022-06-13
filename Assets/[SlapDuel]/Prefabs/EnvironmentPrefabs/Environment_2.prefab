@@ -113,7 +113,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &9019780733261270067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,13 +170,13 @@ MonoBehaviour:
     - {fileID: 3479128498133165745}
     _isRoot: 1
   bounds:
-    center: {x: -0.12944794, y: 0.969491, z: -15.000006}
+    center: {x: -0.12944794, y: 0.96949124, z: -15.000006}
     extents: {x: 21.853573, y: 4.723095, z: 15.000006}
     max: {x: 21.724125, y: 5.692586, z: 0}
-    min: {x: -21.98302, y: -3.753604, z: -30.000011}
+    min: {x: -21.98302, y: -3.7536035, z: -30.000011}
     size: {x: 43.707146, y: 9.44619, z: 30.000011}
   builders: []
-  unpacked: 0
+  unpacked: 1
   alwaysDraw: 0
   drawGeneratedSpline: 1
   drawGeneratedSamples: 1
@@ -184,4 +184,4 @@ MonoBehaviour:
   drawEntranceAndExit: 1
   drawBounds: 1
   drawCustomPaths: 1
-  editorChildCount: 1
+  editorChildCount: 0

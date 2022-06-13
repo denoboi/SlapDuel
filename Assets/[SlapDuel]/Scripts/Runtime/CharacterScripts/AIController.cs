@@ -15,7 +15,7 @@ public class AIController : MonoBehaviour
     private Stamina _stamina;
     private AnimationController _animationController;
     private Health _health;
-    private AI _ai;
+    private AIVisual _ai;
     private Slapper _slapper;
     private IncomeManager _incomeManager;
 
@@ -35,7 +35,7 @@ public class AIController : MonoBehaviour
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
     public Slapper Slapper { get { return _slapper == null ? _slapper = GetComponentInChildren<Slapper>() : _slapper; } } //this is for disable the collider when player hits.
 
-    public AI AI { get { return _ai == null ? _ai = GetComponent<AI>() : _ai; } }  //for ragdoll
+    public AIVisual AI { get { return _ai == null ? _ai = GetComponent<AIVisual>() : _ai; } }  //for ragdoll
 
     public IncomeManager IncomeManager { get { return _incomeManager == null ? _incomeManager = GetComponent<IncomeManager>() : _incomeManager; } }
 
@@ -97,11 +97,12 @@ public class AIController : MonoBehaviour
     {
         _lastTakeDamageTime = Time.time;
         GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] += (float)IncomeManager.IdleStat.CurrentValue;
+        AI.ChangeSlapColor(2);
 
         if (Health.CurrentHealth <= 0)
         {
 
-            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 250);
+            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
             //AI Dead animation.
             Events.OnAIDie.Invoke();
 

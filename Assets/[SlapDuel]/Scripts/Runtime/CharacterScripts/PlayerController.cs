@@ -118,6 +118,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
         {
+            if (CanMove)
+                return;
+
             AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
         }
@@ -166,13 +169,13 @@ public class PlayerController : MonoBehaviour
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
 
-        CinemachineShake.Instance.ShakeCamera(.3f, 1f);
+        CinemachineShake.Instance.ShakeCamera(.2f, 1f);
 
         if(Health.CurrentHealth <= 0)
         {
             //AI controller'dan slap duracak.
             GameManager.Instance.CompeleteStage(false); // yield return ile daha yavas bitirilebilir.
-            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 350);
+            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
             GetComponent<CapsuleCollider>().enabled = false;
         }
      
