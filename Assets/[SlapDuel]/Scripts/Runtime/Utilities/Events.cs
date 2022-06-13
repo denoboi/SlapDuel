@@ -12,4 +12,7 @@ public static class Events
     public static UnityEvent OnPlayerSlapping = new UnityEvent();
     public static UnityEvent OnStaminaLow = new UnityEvent();
     public static UnityEvent OnStaminaNormal = new UnityEvent();
+    public static UnityEvent OnMoneyEarned = new UnityEvent();
+    
+
 }

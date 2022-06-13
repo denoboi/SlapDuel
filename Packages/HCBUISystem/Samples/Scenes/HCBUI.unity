@@ -473,8 +473,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -74, y: -142.15945}
-  m_SizeDelta: {x: 100, y: 43.6811}
+  m_AnchoredPosition: {x: -75.00491, y: -142.15945}
+  m_SizeDelta: {x: 126.5752, y: 43.6811}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439827368
 MonoBehaviour:
@@ -530,8 +530,9 @@ GameObject:
   - component: {fileID: 586302324}
   - component: {fileID: 586302326}
   - component: {fileID: 586302325}
+  - component: {fileID: 586302327}
   m_Layer: 0
-  m_Name: MoneyImage
+  m_Name: MoneyImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -594,6 +595,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586302323}
   m_CullTransparentMesh: 1
+--- !u!114 &586302327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586302323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e484f65bef8454942b7a8cb5a26efd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &694686078
 GameObject:
   m_ObjectHideFlags: 0

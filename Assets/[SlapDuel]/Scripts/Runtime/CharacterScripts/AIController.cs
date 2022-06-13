@@ -100,6 +100,7 @@ public class AIController : MonoBehaviour
         GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] += (float)IncomeManager.IdleStat.CurrentValue;
         AI.ChangeSlapColor(2);
         HapticManager.Haptic(HapticTypes.SoftImpact);
+        Events.OnMoneyEarned.Invoke();
 
         if (Health.CurrentHealth <= 0)
         {

@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
             //AnimationController.TriggerAnimation("Tired");
             isTired = true;
             AnimationController.TriggerAnimation("Idle");
-            HapticManager.Haptic(HapticTypes.RigidImpact);
+            HapticManager.Haptic(HapticTypes.RigidImpact); //bu bug cikarabilir surekli cagirilabilir?
             
         }
 
