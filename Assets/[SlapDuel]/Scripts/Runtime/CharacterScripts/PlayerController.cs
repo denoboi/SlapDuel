@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
             if (isTired)
                 return;
             AnimationController.TriggerAnimation("Slap");
+            
         }
         
 
@@ -146,7 +147,7 @@ public class PlayerController : MonoBehaviour
             //AnimationController.TriggerAnimation("Tired");
             isTired = true;
             AnimationController.TriggerAnimation("Idle");
-           
+            HapticManager.Haptic(HapticTypes.RigidImpact);
             
         }
 
@@ -163,10 +164,11 @@ public class PlayerController : MonoBehaviour
     
         IEnumerator OnAiDieCo()
         {
+            HapticManager.Haptic(HapticTypes.SoftImpact);
             yield return new WaitForSeconds(1);
             IsTriggered = false;
             CanMove = false;
-            AnimationController.TriggerAnimation("Idle");
+            
             
             AnimationController.FloatAnimation("Speed", 1);
         }

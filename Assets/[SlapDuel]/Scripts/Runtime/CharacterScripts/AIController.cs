@@ -77,6 +77,7 @@ public class AIController : MonoBehaviour
     {
         
         AnimationController.FloatAnimation("Slap",0.1f);
+        
 
     }
 
@@ -98,6 +99,7 @@ public class AIController : MonoBehaviour
         _lastTakeDamageTime = Time.time;
         GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] += (float)IncomeManager.IdleStat.CurrentValue;
         AI.ChangeSlapColor(2);
+        HapticManager.Haptic(HapticTypes.SoftImpact);
 
         if (Health.CurrentHealth <= 0)
         {

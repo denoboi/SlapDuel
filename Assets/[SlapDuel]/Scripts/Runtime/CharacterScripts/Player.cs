@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public SkinnedMeshRenderer SkinnedMeshRenderer { get { return _playerMat == null ? _playerMat = GetComponentInChildren<SkinnedMeshRenderer>() : _playerMat; } }
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
+    [SerializeField] private ParticleSystem _sweatingParticle;
+
+
     private void Update()
     {
         TiredMaterial();
@@ -25,6 +28,14 @@ public class Player : MonoBehaviour
 
         SkinnedMeshRenderer.material.SetFloat("_Postion", _normalizeStamina);
 
+        if(Stamina.CurrentStamina < 10)
+        {
+            Sweat();
+        }
+        else
+        {
+            StopSweat();
+        }
 
     }
 
@@ -38,4 +49,17 @@ public class Player : MonoBehaviour
 
         return normalizedValue;
     }
+
+    private void Sweat()
+    {
+        var emission = _sweatingParticle.emission;
+        emission.rateOverTime = 30;
+    }
+
+    public void StopSweat()
+    {
+        var emission = _sweatingParticle.emission;
+        emission.rateOverTime = 0;
+    }
+
 }
