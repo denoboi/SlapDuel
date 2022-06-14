@@ -21,10 +21,8 @@ public class PlayerController : MonoBehaviour
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
     public IncomeManager IncomeManager { get { return _incomeManager == null ? _incomeManager = GetComponent<IncomeManager>() : _incomeManager; } }
 
-
     private bool _isRegenerated;
 
-    
    [SerializeField] public bool IsTriggered { get; set; }
     public bool CanMove { get; private set; }
 
@@ -36,8 +34,6 @@ public class PlayerController : MonoBehaviour
         Events.OnAIDie.AddListener(OnAiDie);
         Health.PlayerOnGetDamage.AddListener(OnPlayerDie);
     }
-
-   
 
     private void OnDisable()
     {
@@ -94,7 +90,6 @@ public class PlayerController : MonoBehaviour
 
     void Slapping()
     {
-        
 
         if (!IsTriggered)
             return;
@@ -143,8 +138,8 @@ public class PlayerController : MonoBehaviour
         if (Stamina.CurrentStamina <= 10)
         {
             
-            Events.OnStaminaLow.Invoke();
-            //AnimationController.TriggerAnimation("Tired");
+            Events.OnStaminaLow.Invoke(); //can vignette
+            
             isTired = true;
             AnimationController.TriggerAnimation("Idle");
             HapticManager.Haptic(HapticTypes.RigidImpact); //bu bug cikarabilir surekli cagirilabilir?
@@ -152,11 +147,11 @@ public class PlayerController : MonoBehaviour
         }
 
          if (Stamina.CurrentStamina > 10 && isTired)
-        {
+         {
 
             isTired = false;
             Events.OnStaminaNormal.Invoke();
-        }
+         }
             
 
     }
@@ -179,6 +174,8 @@ public class PlayerController : MonoBehaviour
         }
 
    
+    
+
 
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
@@ -191,6 +188,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.CompeleteStage(false); // yield return ile daha yavas bitirilebilir.
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
             GetComponent<CapsuleCollider>().enabled = false;
+            
         }
      
     }

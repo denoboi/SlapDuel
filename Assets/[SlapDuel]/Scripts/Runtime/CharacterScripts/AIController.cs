@@ -30,7 +30,7 @@ public class AIController : MonoBehaviour
 
    
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
-    public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
+   
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
     public Slapper Slapper { get { return _slapper == null ? _slapper = GetComponentInChildren<Slapper>() : _slapper; } } //this is for disable the collider when player hits.
@@ -106,7 +106,7 @@ public class AIController : MonoBehaviour
         {
             GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
-            //AI Dead animation.
+            
             Events.OnAIDie.Invoke();
 
         }

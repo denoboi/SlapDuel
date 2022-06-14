@@ -17,23 +17,6 @@ public class CinemachineShake : MonoBehaviour
         _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
-    //private void Update()
-    //{
-    //    if(_shakeTimer > 0)
-    //    {
-    //        _shakeTimer -= Time.deltaTime;
-
-    //        if (_shakeTimer <= 0f)
-    //        {
-    //            //timer bitti
-    //            var _cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-    //            _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
-
-    //        }
-    //    }
-
-    //}
-
     public void ShakeCamera(float intensity, float time)
     {
         var _cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

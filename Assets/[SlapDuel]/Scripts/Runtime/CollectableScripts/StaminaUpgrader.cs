@@ -9,9 +9,17 @@ public class StaminaUpgrader : IdleStatObjectBase
 
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina;  } }
 
+    private void Awake() //mert
+    {
+        Stamina.CurrentStamina = (float)IdleStat.CurrentValue;
+        Stamina.MaxStamina = Stamina.CurrentStamina;
+    }
+
     public override void UpdateStat(string id)
     {
         Stamina.CurrentStamina = (float)IdleStat.CurrentValue;
+        Stamina.MaxStamina = Stamina.CurrentStamina;
+
     }
-   
+
 }

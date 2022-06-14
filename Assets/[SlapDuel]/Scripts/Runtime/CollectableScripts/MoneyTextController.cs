@@ -34,6 +34,6 @@ public class MoneyTextController : MonoBehaviour
 
     private void UpdateText()
     {
-        MoneyText.text = GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin].ToString("N1");
+        MoneyText.text = HCB.Utilities.HCBUtilities.ScoreShow(GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin]); //para k ile olacak utilities sayesinde
     }
 }

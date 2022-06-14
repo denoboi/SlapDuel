@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour //static yapip instance yap
 {
+
     private SkinnedMeshRenderer _playerMat;
     private Stamina _stamina;
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private ParticleSystem _sweatingParticle;
 
+    
 
     private void Update()
     {
