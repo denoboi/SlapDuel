@@ -188,6 +188,8 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.CompeleteStage(false); // yield return ile daha yavas bitirilebilir.
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
             GetComponent<CapsuleCollider>().enabled = false;
+
+
             
         }
      

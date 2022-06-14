@@ -7,6 +7,7 @@ public class AISpawner : MonoBehaviour //Bu scripti baska yere de atamisim 1 saa
 
     public GameObject Enemy;
     public GameObject Player;
+    private float strength;
 
     private void OnEnable()
     {
@@ -20,10 +21,16 @@ public class AISpawner : MonoBehaviour //Bu scripti baska yere de atamisim 1 saa
 
     void InstantiateAI()
     {
-
+        strength += 50;
         Vector3 position = Player.transform.position;
         Vector3 offset = Vector3.forward * Random.Range(8, 12);
-        Instantiate(Enemy, position + offset, Enemy.transform.rotation); //quaternion identity yazinca 0'liyor.Su an kendi rotasyonu
+
+        /*Instantiate metodu gameobject donuyor*/
+        GameObject enemy = Instantiate(Enemy, position + offset, Enemy.transform.rotation); //quaternion identity yazinca 0'liyor.Su an kendi rotasyonu
+
+        //for harder Ai
+
+        enemy.GetComponent<AIController>().Init(strength); //mami
     }
 
 

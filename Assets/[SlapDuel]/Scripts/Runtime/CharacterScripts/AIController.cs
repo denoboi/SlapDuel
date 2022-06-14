@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using HCB.Core;
+using System;
 
 public class AIController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class AIController : MonoBehaviour
     private AIVisual _ai;
     private Slapper _slapper;
     private IncomeManager _incomeManager;
+    
 
    
 
@@ -26,6 +28,8 @@ public class AIController : MonoBehaviour
 
     public bool IsActivated { get; private set;}
     public bool CanPunch { get; set; }
+
+    private bool _isDead;
     
 
    
@@ -33,6 +37,9 @@ public class AIController : MonoBehaviour
    
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
+
+   
+
     public Slapper Slapper { get { return _slapper == null ? _slapper = GetComponentInChildren<Slapper>() : _slapper; } } //this is for disable the collider when player hits.
 
     public AIVisual AI { get { return _ai == null ? _ai = GetComponent<AIVisual>() : _ai; } }  //for ragdoll
@@ -73,6 +80,11 @@ public class AIController : MonoBehaviour
 
     }
 
+    public void Init(float strength)
+    {
+        Health.HealthDrainMultiplier -= strength;
+    }
+
     private void Slapping()
     {
         
@@ -96,6 +108,9 @@ public class AIController : MonoBehaviour
 
     private void OnTakeDamage() //mami
     {
+        if (_isDead)
+            return;
+
         _lastTakeDamageTime = Time.time;
         GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] += (float)IncomeManager.IdleStat.CurrentValue;
         AI.ChangeSlapColor(2);
@@ -104,9 +119,12 @@ public class AIController : MonoBehaviour
 
         if (Health.CurrentHealth <= 0)
         {
+            
+            _isDead = true; //mert
             GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
             
+
             Events.OnAIDie.Invoke();
 
         }
