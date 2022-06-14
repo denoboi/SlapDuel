@@ -156,13 +156,13 @@ MonoBehaviour:
     - {fileID: 919132149602539545}
     _isRoot: 1
   bounds:
-    center: {x: -0.12944126, y: 4.8830953, z: -15.000003}
+    center: {x: -0.12944126, y: 4.883095, z: -15.000003}
     extents: {x: 21.853573, y: 8.6367035, z: 15.000003}
     max: {x: 21.724133, y: 13.519798, z: 0}
-    min: {x: -21.983015, y: -3.753608, z: -30.000006}
+    min: {x: -21.983015, y: -3.7536087, z: -30.000006}
     size: {x: 43.707146, y: 17.273407, z: 30.000006}
   builders: []
-  unpacked: 1
+  unpacked: 0
   alwaysDraw: 0
   drawGeneratedSpline: 1
   drawGeneratedSamples: 1
@@ -170,7 +170,7 @@ MonoBehaviour:
   drawEntranceAndExit: 1
   drawBounds: 1
   drawCustomPaths: 1
-  editorChildCount: 0
+  editorChildCount: 1
 --- !u!64 &919132149602539545
 MeshCollider:
   m_ObjectHideFlags: 0

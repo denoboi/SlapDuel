@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (CanMove)
+        if (!CanMove)
             return;
       
         LaneRunner.follow = true;
         AnimationController.FloatAnimation("Speed", 1);
-        CanMove = true;
+        
         
     }
 
@@ -76,8 +76,7 @@ public class PlayerController : MonoBehaviour
         if (!IsTriggered)
             return;
 
-
-            LaneRunner.follow = false;
+        LaneRunner.follow = false;
             
             CanMove = false;
 
@@ -98,6 +97,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isTired)
                 return;
+            
             AnimationController.TriggerAnimation("Slap");
             
         }
@@ -105,12 +105,17 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            if(!IsTriggered)
+            {
+                StopSlapping();
+                return;
+            }
   
             Stamina.StaminaDrain();
             Events.OnPlayerSlapping.Invoke();
             _isRegenerated = false;
+           
         }
-
 
     }
 
@@ -119,14 +124,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)) //AI olunce elimizi cektigimizi anlamiyor(isTrigger false), o yuzden manuel altta cekiyoruz (slap-false)
         {
-            if (CanMove)
-                return;
+           
+            CanMove = true;
+            AnimationController.TriggerAnimation("Idle");
 
             if (!IsTriggered)
                 return;
 
-            AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
+            
         }
     }
 
