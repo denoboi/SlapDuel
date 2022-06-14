@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HCB.PoolingSystem;
+using TMPro;
+using DG.Tweening;
 
 public class Slapper : MonoBehaviour
 {
     public Health Health; //mert
-   
+    
+
     private void OnTriggerEnter(Collider other)
     {
         
         Health health = other.GetComponentInParent<Health>();
         AnimationController animationController = other.GetComponentInParent<AnimationController>();
+       
 
         if (other.gameObject.layer == 10) //ragdoll ise return
             return;
@@ -22,10 +27,11 @@ public class Slapper : MonoBehaviour
             return;
 
         
-        health.HealthDrain();
+            health.HealthDrain();
          animationController.TriggerAnimation("Shake");
             Debug.Log("hit :" + other.gameObject.name);
-            
-       
+   
+
     }
+
 }

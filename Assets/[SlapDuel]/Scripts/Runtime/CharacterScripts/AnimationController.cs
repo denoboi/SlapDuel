@@ -25,6 +25,11 @@ public class AnimationController : MonoBehaviour
         Animator.SetFloat("Stamina", Stamina.CurrentStamina); //mert 
     }
 
+    public void SetStamina(float value) //mert
+    {
+        Animator.SetFloat("Stamina", value);
+    }
+
     public void BoolAnimation(string ID, bool value)
     {
         Animator.SetBool(ID, value);

@@ -17,10 +17,12 @@ public class Stamina : MonoBehaviour
     [Range(1.25f, 15f)] public float StaminaRegenMultiplier;
 
     private PlayerController _playerController;
+    private AnimationController _animationController;
 
     public PlayerController PlayerController { get { return _playerController == null ? _playerController = GetComponent<PlayerController>() : _playerController; } }
+    public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
 
-
+  
     public void StaminaDrain()
     {
         CurrentStamina -= Time.deltaTime * StaminaDrainMultiplier;

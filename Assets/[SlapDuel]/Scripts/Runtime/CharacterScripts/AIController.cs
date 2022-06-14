@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using HCB.Core;
+using System;
+using HCB.PoolingSystem;
+using TMPro;
+using DG.Tweening;
+
 
 public class AIController : MonoBehaviour
 {
@@ -19,20 +24,22 @@ public class AIController : MonoBehaviour
     private Slapper _slapper;
     private IncomeManager _incomeManager;
 
-   
 
     [SerializeField] private float _recoveryTime;
     private float _lastTakeDamageTime = Mathf.Infinity;
 
     public bool IsActivated { get; private set;}
     public bool CanPunch { get; set; }
-    
 
-   
+    private bool _isDead;
+ 
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
-    public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
+   
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
+
+   
+
     public Slapper Slapper { get { return _slapper == null ? _slapper = GetComponentInChildren<Slapper>() : _slapper; } } //this is for disable the collider when player hits.
 
     public AIVisual AI { get { return _ai == null ? _ai = GetComponent<AIVisual>() : _ai; } }  //for ragdoll
@@ -43,12 +50,14 @@ public class AIController : MonoBehaviour
     private void OnEnable()
     {
         Health.OnGetDamage.AddListener(OnTakeDamage);
-        
+        Events.OnPlayerDie.AddListener(Victory);
+           
     }
 
     private void OnDisable()
     {
         Health.OnGetDamage.RemoveListener(OnTakeDamage);
+        Events.OnPlayerDie.RemoveListener(Victory);
     }
 
     private void Update()
@@ -67,50 +76,84 @@ public class AIController : MonoBehaviour
             if (!CanPunch)
                 return;
             CanPunch = false;
-            StopSlapping();
-           
+            StopSlapping();      
         }
+    }
 
+    public void Init(float strength)
+    {
+        Health.HealthDrainMultiplier -= strength;
     }
 
     private void Slapping()
     {
-        
-        AnimationController.FloatAnimation("Slap",0.1f);
-        
-
+        AnimationController.FloatAnimation("Slap", 0.1f);
     }
 
     private void StopSlapping()
     {
-        AnimationController.FloatAnimation("Slap",0f);
+        AnimationController.FloatAnimation("Slap", 0f);
     }
-
-
 
     public void Activate() //mami  //bu activate'i ai ilk kez girdiginde kullanabiliriz.
     {
         IsActivated = true;
+        StartCoroutine(AIStartSlapping());
+    }
+
+    IEnumerator AIStartSlapping()
+    {
+        yield return new WaitForSeconds(1);
         AnimationController.FloatAnimation("Slap", 0.1f);
     }
 
     private void OnTakeDamage() //mami
     {
+        if (_isDead)
+            return;
+
         _lastTakeDamageTime = Time.time;
         GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] += (float)IncomeManager.IdleStat.CurrentValue;
         AI.ChangeSlapColor(2);
         HapticManager.Haptic(HapticTypes.SoftImpact);
         Events.OnMoneyEarned.Invoke();
+        GetComponent<IncomeManager>();
+        CreateFloatingText("+" + IncomeManager.IdleStat.CurrentValue.ToString("N1") + " $", Color.green, 1f);
 
         if (Health.CurrentHealth <= 0)
         {
-
+            _isDead = true; //(mert) collider'a tekrar degmesin diye. Surekli instantiate ediyordu.
+            GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
-            //AI Dead animation.
+            StartCoroutine(DeadAI());
+
             Events.OnAIDie.Invoke();
-
         }
+    }
 
+    IEnumerator DeadAI()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+    }
+
+    void Victory()
+    {
+        AnimationController.TriggerAnimation("Dance");
+    }
+
+    public void CreateFloatingText(string s, Color color, float delay)
+    {
+        GameObject floatingTextObject = PoolingSystem.Instance.InstantiateAPS("Text", AI.gameObject.transform.position + Vector3.up * 1.4f);
+        TextMeshPro text = floatingTextObject.GetComponentInChildren<TextMeshPro>();
+        floatingTextObject.transform.LookAt(Camera.main.transform);
+        text.SetText(s);
+        text.DOFade(1, 0);
+        text.color = color;
+        floatingTextObject.transform.DOMoveY(floatingTextObject.transform.position.y + 1f, delay);
+        text.DOFade(0, delay / 2)
+            .SetDelay(delay / 2)
+            .OnComplete(() => PoolingSystem.Instance.DestroyAPS(floatingTextObject.gameObject));
     }
 
 }

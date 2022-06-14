@@ -5089,7 +5089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6082,7 +6082,7 @@ MonoBehaviour:
       m_Calls: []
   CurrentHealth: 100
   MaxHealth: 100
-  HealthDrainMultiplier: 787
+  HealthDrainMultiplier: 1000
   PlayerPower: 1
 --- !u!54 &5726658547155686470
 Rigidbody:
@@ -6134,7 +6134,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.38
+  m_Radius: 0.23
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0.03, y: 0.82, z: 0.02}
