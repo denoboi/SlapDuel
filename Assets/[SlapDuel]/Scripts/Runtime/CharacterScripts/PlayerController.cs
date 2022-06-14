@@ -142,13 +142,11 @@ public class PlayerController : MonoBehaviour
             
             isTired = true;
             AnimationController.TriggerAnimation("Idle");
-            HapticManager.Haptic(HapticTypes.RigidImpact); //bu bug cikarabilir surekli cagirilabilir?
-            
+            HapticManager.Haptic(HapticTypes.RigidImpact);
         }
 
          if (Stamina.CurrentStamina > 10 && isTired)
          {
-
             isTired = false;
             Events.OnStaminaNormal.Invoke();
          }

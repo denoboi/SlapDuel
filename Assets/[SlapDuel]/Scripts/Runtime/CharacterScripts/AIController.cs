@@ -117,7 +117,7 @@ public class AIController : MonoBehaviour
         AI.ChangeSlapColor(2);
         HapticManager.Haptic(HapticTypes.SoftImpact);
         Events.OnMoneyEarned.Invoke();
-
+        GetComponent<IncomeManager>();
         CreateFloatingText("+" + IncomeManager.IdleStat.CurrentValue.ToString("N1") + " $", Color.green, 1f);
 
         if (Health.CurrentHealth <= 0)
@@ -125,9 +125,16 @@ public class AIController : MonoBehaviour
             _isDead = true; //(mert) collider'a tekrar degmesin diye. Surekli instantiate ediyordu.
             GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
+            StartCoroutine(DeadAI());
 
             Events.OnAIDie.Invoke();
         }
+    }
+
+    IEnumerator DeadAI()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 
     void Victory()
@@ -137,15 +144,16 @@ public class AIController : MonoBehaviour
 
     public void CreateFloatingText(string s, Color color, float delay)
     {
-        TextMeshPro text = PoolingSystem.Instance.InstantiateAPS("Text", gameObject.transform.position).GetComponent<TextMeshPro>();
-        text.transform.LookAt(Camera.main.transform);
+        GameObject floatingTextObject = PoolingSystem.Instance.InstantiateAPS("Text", AI.gameObject.transform.position + Vector3.up * 1.4f);
+        TextMeshPro text = floatingTextObject.GetComponentInChildren<TextMeshPro>();
+        floatingTextObject.transform.LookAt(Camera.main.transform);
         text.SetText(s);
         text.DOFade(1, 0);
         text.color = color;
-        text.transform.DOMoveY(text.transform.position.y + 1f, delay);
+        floatingTextObject.transform.DOMoveY(floatingTextObject.transform.position.y + 1f, delay);
         text.DOFade(0, delay / 2)
             .SetDelay(delay / 2)
-            .OnComplete(() => PoolingSystem.Instance.DestroyAPS(text.gameObject));
+            .OnComplete(() => PoolingSystem.Instance.DestroyAPS(floatingTextObject.gameObject));
     }
 
 }

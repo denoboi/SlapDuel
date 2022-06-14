@@ -8,19 +8,14 @@ using DG.Tweening;
 public class Slapper : MonoBehaviour
 {
     public Health Health; //mert
-    private IncomeManager _incomeManager;
-
-
-    public IncomeManager IncomeManager { get { return _incomeManager == null ? _incomeManager = GetComponent<IncomeManager>() : _incomeManager; } }
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
         
         Health health = other.GetComponentInParent<Health>();
         AnimationController animationController = other.GetComponentInParent<AnimationController>();
-        IncomeManager incomeManager = other.GetComponentInParent<IncomeManager>();
-        PlayerController playerController = other.GetComponentInParent<PlayerController>();
+       
 
         if (other.gameObject.layer == 10) //ragdoll ise return
             return;

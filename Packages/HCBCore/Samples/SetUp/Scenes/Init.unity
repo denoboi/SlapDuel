@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SourceObjects:
   - ID: Text
-    SourcePrefab: {fileID: 918302614858646112, guid: 88fd68eb65f35fc40bdf544aacf3b75d, type: 3}
+    SourcePrefab: {fileID: 3343904647244539656, guid: 56328f0cb91e73e4794469a5aac7f325, type: 3}
     MinNumberOfObject: 0
     AllowGrow: 1
     AutoDestroy: 1
