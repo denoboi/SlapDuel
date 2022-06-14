@@ -38,6 +38,13 @@ namespace HCB.IncrimantalIdleSystem.Editor
             }
         }
 
-        
+        [Button]
+        public void ClearData()
+        {
+            for (int i = 0; i < IdleStats.Count; i++)
+            {
+                PlayerPrefs.DeleteKey(IdleStats[i].StatID);
+            }
+        }
     }
 }
