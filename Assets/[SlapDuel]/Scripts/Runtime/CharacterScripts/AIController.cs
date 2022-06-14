@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using HCB.Core;
 using System;
+using HCB.PoolingSystem;
+using TMPro;
+using DG.Tweening;
+
 
 public class AIController : MonoBehaviour
 {
@@ -19,9 +23,7 @@ public class AIController : MonoBehaviour
     private AIVisual _ai;
     private Slapper _slapper;
     private IncomeManager _incomeManager;
-    
 
-   
 
     [SerializeField] private float _recoveryTime;
     private float _lastTakeDamageTime = Mathf.Infinity;
@@ -30,9 +32,7 @@ public class AIController : MonoBehaviour
     public bool CanPunch { get; set; }
 
     private bool _isDead;
-    
-
-   
+ 
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
    
 
@@ -51,12 +51,13 @@ public class AIController : MonoBehaviour
     {
         Health.OnGetDamage.AddListener(OnTakeDamage);
         Events.OnPlayerDie.AddListener(Victory);
-        
+           
     }
 
     private void OnDisable()
     {
         Health.OnGetDamage.RemoveListener(OnTakeDamage);
+        Events.OnPlayerDie.RemoveListener(Victory);
     }
 
     private void Update()
@@ -75,10 +76,8 @@ public class AIController : MonoBehaviour
             if (!CanPunch)
                 return;
             CanPunch = false;
-            StopSlapping();
-           
+            StopSlapping();      
         }
-
     }
 
     public void Init(float strength)
@@ -88,31 +87,24 @@ public class AIController : MonoBehaviour
 
     private void Slapping()
     {
-        
-        AnimationController.FloatAnimation("Slap",0.1f);
-        
-
+        AnimationController.FloatAnimation("Slap", 0.1f);
     }
 
     private void StopSlapping()
     {
-        AnimationController.FloatAnimation("Slap",0f);
+        AnimationController.FloatAnimation("Slap", 0f);
     }
-
-
 
     public void Activate() //mami  //bu activate'i ai ilk kez girdiginde kullanabiliriz.
     {
         IsActivated = true;
         StartCoroutine(AIStartSlapping());
-        
     }
 
     IEnumerator AIStartSlapping()
     {
         yield return new WaitForSeconds(1);
         AnimationController.FloatAnimation("Slap", 0.1f);
-
     }
 
     private void OnTakeDamage() //mami
@@ -126,23 +118,34 @@ public class AIController : MonoBehaviour
         HapticManager.Haptic(HapticTypes.SoftImpact);
         Events.OnMoneyEarned.Invoke();
 
+        CreateFloatingText("+" + IncomeManager.IdleStat.CurrentValue.ToString("N1") + " $", Color.green, 1f);
+
         if (Health.CurrentHealth <= 0)
         {
-            
             _isDead = true; //(mert) collider'a tekrar degmesin diye. Surekli instantiate ediyordu.
             GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
-            
 
             Events.OnAIDie.Invoke();
-
         }
-
     }
 
     void Victory()
     {
         AnimationController.TriggerAnimation("Dance");
+    }
+
+    public void CreateFloatingText(string s, Color color, float delay)
+    {
+        TextMeshPro text = PoolingSystem.Instance.InstantiateAPS("Text", gameObject.transform.position).GetComponent<TextMeshPro>();
+        text.transform.LookAt(Camera.main.transform);
+        text.SetText(s);
+        text.DOFade(1, 0);
+        text.color = color;
+        text.transform.DOMoveY(text.transform.position.y + 1f, delay);
+        text.DOFade(0, delay / 2)
+            .SetDelay(delay / 2)
+            .OnComplete(() => PoolingSystem.Instance.DestroyAPS(text.gameObject));
     }
 
 }

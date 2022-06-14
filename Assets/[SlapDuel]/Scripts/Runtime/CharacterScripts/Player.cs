@@ -63,5 +63,4 @@ public class Player : MonoBehaviour //static yapip instance yap
         var emission = _sweatingParticle.emission;
         emission.rateOverTime = 0;
     }
-
 }
