@@ -22,11 +22,7 @@ public class Stamina : MonoBehaviour
     public PlayerController PlayerController { get { return _playerController == null ? _playerController = GetComponent<PlayerController>() : _playerController; } }
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
 
-    //private void Awake()
-    //{
-    //    AnimationController.SetStamina(HCB.Utilities.HCBUtilities.Normalize01(CurrentStamina, MaxStamina));
-    //}
-
+  
     public void StaminaDrain()
     {
         CurrentStamina -= Time.deltaTime * StaminaDrainMultiplier;

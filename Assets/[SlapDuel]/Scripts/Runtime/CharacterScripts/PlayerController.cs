@@ -184,20 +184,25 @@ public class PlayerController : MonoBehaviour
 
         if(Health.CurrentHealth <= 0)
         {
-            //AI controller'dan slap duracak.
-            GameManager.Instance.CompeleteStage(false); // yield return ile daha yavas bitirilebilir.
-            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
-            GetComponent<CapsuleCollider>().enabled = false;
-
-
             
+            GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
+            Events.OnPlayerDie.Invoke(); //from Ai controller, for animation
+
+            StartCoroutine(WaitForEnd());
+
         }
      
     }
 
+    IEnumerator WaitForEnd()
+    {
+        yield return new WaitForSeconds(1.2f);
+        GameManager.Instance.CompeleteStage(false);
+    }
 
 
-   
+
+
 }
 
 

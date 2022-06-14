@@ -50,6 +50,7 @@ public class AIController : MonoBehaviour
     private void OnEnable()
     {
         Health.OnGetDamage.AddListener(OnTakeDamage);
+        Events.OnPlayerDie.AddListener(Victory);
         
     }
 
@@ -103,7 +104,15 @@ public class AIController : MonoBehaviour
     public void Activate() //mami  //bu activate'i ai ilk kez girdiginde kullanabiliriz.
     {
         IsActivated = true;
+        StartCoroutine(AIStartSlapping());
+        
+    }
+
+    IEnumerator AIStartSlapping()
+    {
+        yield return new WaitForSeconds(1);
         AnimationController.FloatAnimation("Slap", 0.1f);
+
     }
 
     private void OnTakeDamage() //mami
@@ -120,7 +129,7 @@ public class AIController : MonoBehaviour
         if (Health.CurrentHealth <= 0)
         {
             
-            _isDead = true; //mert
+            _isDead = true; //(mert) collider'a tekrar degmesin diye. Surekli instantiate ediyordu.
             GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.left, 650);
             
@@ -129,6 +138,11 @@ public class AIController : MonoBehaviour
 
         }
 
+    }
+
+    void Victory()
+    {
+        AnimationController.TriggerAnimation("Dance");
     }
 
 }
