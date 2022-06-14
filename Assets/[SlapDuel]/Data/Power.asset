@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power
   m_EditorClassIdentifier: 
   StatID: Power
-  InitialValue: 0.2
+  InitialValue: 1
   UpgradeMultiplier: 0.11
   InitialCost: 40
   CostMultiplier: 1.1
