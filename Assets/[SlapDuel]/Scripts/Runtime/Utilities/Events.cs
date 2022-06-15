@@ -14,6 +14,7 @@ public static class Events
     public static UnityEvent OnStaminaNormal = new UnityEvent();
     public static UnityEvent OnMoneyEarned = new UnityEvent();
     public static UnityEvent OnPlayerDie = new UnityEvent();
+    //public static UnityEvent OnStatBought = new UnityEvent();
 
 
 }
