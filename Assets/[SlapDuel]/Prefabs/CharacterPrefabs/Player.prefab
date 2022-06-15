@@ -4629,8 +4629,8 @@ MonoBehaviour:
   _currentStamina: 100
   MaxStamina: 100
   IsRegenerated: 0
-  StaminaDrainMultiplier: 12
-  StaminaRegenMultiplier: 7
+  StaminaDrainMultiplier: 15
+  StaminaRegenMultiplier: 6
 --- !u!114 &7090358864256933854
 MonoBehaviour:
   m_ObjectHideFlags: 0

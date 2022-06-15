@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
                 return;
             AnimationController.TriggerAnimation("Slap");
 
-            Stamina.StaminaTween(Stamina.CurrentStamina - 5f); 
+            Stamina.StaminaTween(Stamina.CurrentStamina - 10f); 
 
              
             
