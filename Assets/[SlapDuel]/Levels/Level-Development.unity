@@ -304,7 +304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327368988}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 738960fbd5caa3b40988644471bd1efa, type: 3}
   m_Name: 
@@ -1045,9 +1045,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3877405558246616461, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
+      propertyPath: StaminaDrainMultiplier
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877405558246616461, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
+      propertyPath: StaminaRegenMultiplier
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3914965613667991045, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.0017047294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356267343359893641, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
+      propertyPath: m_Radius
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 5354211124031448649, guid: 8cc5e117d1650ec45b1da6c99107ac74, type: 3}
       propertyPath: m_ConnectedAnchor.x

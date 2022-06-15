@@ -8,7 +8,10 @@ using DG.Tweening;
 public class Slapper : MonoBehaviour
 {
     public Health Health; //mert
-    
+
+    private Collider _collider;
+
+    public Collider Collider { get { return _collider == null ? _collider = GetComponent<Collider>() : _collider; } }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,6 +33,7 @@ public class Slapper : MonoBehaviour
             health.HealthDrain();
          animationController.TriggerAnimation("Shake");
             Debug.Log("hit :" + other.gameObject.name);
+        Collider.enabled = false; 
    
 
     }

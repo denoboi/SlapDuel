@@ -60,7 +60,7 @@ public class OnBoardingPanel : HCBPanel
         }
 
        
-            if (GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] >= 5)
+            if (GameManager.Instance.PlayerData.CurrencyData[HCB.ExchangeType.Coin] >= 6)
             {
                 //HCBPanelList.HCBPanels[HCBPanelList.UpgradePanel].ShowPanel();
                 ShowUpgradePanel.ShowPanel();

@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour
             if (isTired)
                 return;
             AnimationController.TriggerAnimation("Slap");
+
+            Stamina.StaminaTween(Stamina.CurrentStamina - 10f); 
+
+             
             
         }
         

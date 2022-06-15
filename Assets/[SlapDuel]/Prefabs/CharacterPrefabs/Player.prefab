@@ -4626,11 +4626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d64f60a2a59004d8cf49920d1e6e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentStamina: 100
+  _currentStamina: 100
   MaxStamina: 100
   IsRegenerated: 0
   StaminaDrainMultiplier: 12
-  StaminaRegenMultiplier: 9
+  StaminaRegenMultiplier: 7
 --- !u!114 &7090358864256933854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13657,7 +13657,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1314724092793539917, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: m_Radius
-      value: 0.08
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 5448606099445831864, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: Health
@@ -13673,15 +13673,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8688962393906455337, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0374
+      value: 0.017
       objectReference: {fileID: 0}
     - target: {fileID: 8688962393906455337, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0138
+      value: 0.021
       objectReference: {fileID: 0}
     - target: {fileID: 8688962393906455337, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0252
+      value: -0.027
       objectReference: {fileID: 0}
     - target: {fileID: 8688962393906455337, guid: d7967ab30ba288c4fbdba7d44283e93e, type: 3}
       propertyPath: m_LocalRotation.w
