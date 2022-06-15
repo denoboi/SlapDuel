@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour
     {
 
         CinemachineShake.Instance.ShakeCamera(.2f, 1f);
+        HapticManager.Haptic(HapticTypes.Warning);
 
         if(Health.CurrentHealth <= 0)
         {
