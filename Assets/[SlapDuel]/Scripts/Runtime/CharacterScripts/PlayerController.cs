@@ -100,9 +100,9 @@ public class PlayerController : MonoBehaviour
                 return;
             AnimationController.TriggerAnimation("Slap");
 
-            Stamina.StaminaTween(Stamina.CurrentStamina - 10f); 
+            Stamina.StaminaTween(Stamina.CurrentStamina - 10f);
 
-             
+            AnimationController.BoolAnimation("IsSlapping", true); 
             
         }
         
@@ -113,6 +113,9 @@ public class PlayerController : MonoBehaviour
             Stamina.StaminaDrain();
             Events.OnPlayerSlapping.Invoke();
             _isRegenerated = false;
+           
+
+            AnimationController.BoolAnimation("IsSlapping", true);
         }
 
 
@@ -131,6 +134,8 @@ public class PlayerController : MonoBehaviour
 
             AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
+
+            AnimationController.BoolAnimation("IsSlapping", false);
         }
     }
 
