@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour
 
         private void OnAiDie()
         {
+            CinemachineShake.Instance.ShakeCamera(.6f, 1.5f);
             HapticManager.Haptic(HapticTypes.Success);
             AnimationController.BoolAnimation("IsSlapping", false);
             
@@ -186,7 +187,7 @@ public class PlayerController : MonoBehaviour
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
 
-        CinemachineShake.Instance.ShakeCamera(.2f, 1f);
+        
         HapticManager.Haptic(HapticTypes.Warning);
 
         if(Health.CurrentHealth <= 0)
