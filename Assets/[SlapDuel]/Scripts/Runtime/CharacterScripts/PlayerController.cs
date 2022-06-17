@@ -68,6 +68,10 @@ public class PlayerController : MonoBehaviour
         LaneRunner.follow = true;
         AnimationController.FloatAnimation("Speed", 1);
         CanMove = true;
+
+        _isRegenerated = true;
+
+        AnimationController.BoolAnimation("IsSlapping", false);
         
     }
 
@@ -100,10 +104,11 @@ public class PlayerController : MonoBehaviour
                 return;
             AnimationController.TriggerAnimation("Slap");
 
-            Stamina.StaminaTween(Stamina.CurrentStamina - 10f);
+            Stamina.StaminaTween(Stamina.CurrentStamina - 17f);
+            AnimationController.BoolAnimation("IsSlapping", true);
 
-            AnimationController.BoolAnimation("IsSlapping", true); 
-            
+
+
         }
         
 
@@ -113,9 +118,9 @@ public class PlayerController : MonoBehaviour
             Stamina.StaminaDrain();
             Events.OnPlayerSlapping.Invoke();
             _isRegenerated = false;
-           
 
             AnimationController.BoolAnimation("IsSlapping", true);
+
         }
 
 
@@ -167,9 +172,11 @@ public class PlayerController : MonoBehaviour
         IEnumerator OnAiDieCo()
         {
             HapticManager.Haptic(HapticTypes.SoftImpact);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             IsTriggered = false;
             CanMove = false;
+
+        
             
             
             AnimationController.FloatAnimation("Speed", 1);

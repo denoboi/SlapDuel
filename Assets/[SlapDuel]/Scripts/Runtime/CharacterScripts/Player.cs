@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour //static yapip instance yap
 {
 
-    private SkinnedMeshRenderer _playerMat;
+    public SkinnedMeshRenderer _playerMat;
     private Stamina _stamina;
 
     private float _normalizeStamina;
 
-    public SkinnedMeshRenderer SkinnedMeshRenderer { get { return _playerMat == null ? _playerMat = GetComponentInChildren<SkinnedMeshRenderer>() : _playerMat; } }
+    
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
     [SerializeField] private ParticleSystem _sweatingParticle;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour //static yapip instance yap
    
         _normalizeStamina = NormalizeValue(Stamina.CurrentStamina, 0, Stamina.MaxStamina); // bunu tam anlamadim
 
-        SkinnedMeshRenderer.material.SetFloat("_Postion", _normalizeStamina);
+        _playerMat.materials[1].SetFloat("_Postion", _normalizeStamina);
 
         if(Stamina.CurrentStamina < 10)
         {
