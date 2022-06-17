@@ -36,7 +36,7 @@ public class AISpawner : MonoBehaviour //Bu scripti baska yere de atamisim 1 saa
         if(_enemyCount > 10) // mert harikasi
         {
             _enemyCount = 0;
-            strength += 200;
+            strength += 400;
             _enemyLevel++;
         }
 
