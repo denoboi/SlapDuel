@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         AnimationController.FloatAnimation("Speed", 1);
         CanMove = true;
 
-        _isRegenerated = true;
+        _isRegenerated = true; //this is new, for the haptic bug
 
         AnimationController.BoolAnimation("IsSlapping", false);
         
@@ -106,9 +106,6 @@ public class PlayerController : MonoBehaviour
 
             Stamina.StaminaTween(Stamina.CurrentStamina - 17f);
             AnimationController.BoolAnimation("IsSlapping", true);
-
-
-
         }
         
 
@@ -167,29 +164,24 @@ public class PlayerController : MonoBehaviour
             
 
     }
-
-    
+ 
         IEnumerator OnAiDieCo()
         {
-            HapticManager.Haptic(HapticTypes.SoftImpact);
+ 
             yield return new WaitForSeconds(0.5f);
             IsTriggered = false;
             CanMove = false;
 
-        
-            
-            
             AnimationController.FloatAnimation("Speed", 1);
         }
 
         private void OnAiDie()
         {
+            HapticManager.Haptic(HapticTypes.Success);
+            AnimationController.BoolAnimation("IsSlapping", false);
+            
             StartCoroutine(OnAiDieCo());
         }
-
-   
-    
-
 
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
