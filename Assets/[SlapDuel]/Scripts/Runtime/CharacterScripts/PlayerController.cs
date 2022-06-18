@@ -187,7 +187,6 @@ public class PlayerController : MonoBehaviour
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
 
-        
         HapticManager.Haptic(HapticTypes.Warning);
 
         if(Health.CurrentHealth <= 0)

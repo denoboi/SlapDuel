@@ -10,12 +10,19 @@ public class Player : MonoBehaviour //static yapip instance yap
 
     private float _normalizeStamina;
 
+   
+
+
+
     
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
     [SerializeField] private ParticleSystem _sweatingParticle;
+    [SerializeField] private float _headChangeSpeed;
 
-    
+
+   
+
 
     private void Update()
     {
@@ -33,10 +40,14 @@ public class Player : MonoBehaviour //static yapip instance yap
         if(Stamina.CurrentStamina < 10)
         {
             Sweat();
+
+            _playerMat.SetBlendShapeWeight(0, Mathf.Clamp(Mathf.Sin(Time.time * _headChangeSpeed) * 100, 20, 100));
+
         }
         else
         {
             StopSweat();
+            _playerMat.SetBlendShapeWeight(0, Mathf.Lerp(_playerMat.GetBlendShapeWeight(0), 80, Time.deltaTime * _headChangeSpeed)); //default head size is 80
         }
 
     }
@@ -63,4 +74,6 @@ public class Player : MonoBehaviour //static yapip instance yap
         var emission = _sweatingParticle.emission;
         emission.rateOverTime = 0;
     }
+
+  
 }
