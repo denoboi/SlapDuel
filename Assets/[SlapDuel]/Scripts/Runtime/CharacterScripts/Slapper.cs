@@ -33,7 +33,7 @@ public class Slapper : MonoBehaviour
             health.HealthDrain();
          animationController.TriggerAnimation("Shake");
             Debug.Log("hit :" + other.gameObject.name);
-        Collider.enabled = false; 
+            Collider.enabled = false; 
    
 
     }
