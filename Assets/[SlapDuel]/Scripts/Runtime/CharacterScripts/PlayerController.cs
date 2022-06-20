@@ -68,6 +68,10 @@ public class PlayerController : MonoBehaviour
         LaneRunner.follow = true;
         AnimationController.FloatAnimation("Speed", 1);
         CanMove = true;
+
+        _isRegenerated = true; //this is new, for the haptic bug
+
+        AnimationController.BoolAnimation("IsSlapping", false);
         
     }
 
@@ -100,10 +104,8 @@ public class PlayerController : MonoBehaviour
                 return;
             AnimationController.TriggerAnimation("Slap");
 
-            Stamina.StaminaTween(Stamina.CurrentStamina - 10f); 
-
-             
-            
+            Stamina.StaminaTween(Stamina.CurrentStamina - 17f);
+            AnimationController.BoolAnimation("IsSlapping", true);
         }
         
 
@@ -113,6 +115,9 @@ public class PlayerController : MonoBehaviour
             Stamina.StaminaDrain();
             Events.OnPlayerSlapping.Invoke();
             _isRegenerated = false;
+
+            AnimationController.BoolAnimation("IsSlapping", true);
+
         }
 
 
@@ -131,6 +136,8 @@ public class PlayerController : MonoBehaviour
 
             AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
+
+            AnimationController.BoolAnimation("IsSlapping", false);
         }
     }
 
@@ -157,37 +164,34 @@ public class PlayerController : MonoBehaviour
             
 
     }
-
-    
+ 
         IEnumerator OnAiDieCo()
         {
-            HapticManager.Haptic(HapticTypes.SoftImpact);
-            yield return new WaitForSeconds(1);
+ 
+            yield return new WaitForSeconds(0.5f);
             IsTriggered = false;
             CanMove = false;
-            
-            
+
             AnimationController.FloatAnimation("Speed", 1);
         }
 
         private void OnAiDie()
         {
+            CinemachineShake.Instance.ShakeCamera(.6f, 1.5f);
+            HapticManager.Haptic(HapticTypes.Success);
+            AnimationController.BoolAnimation("IsSlapping", false);
+            
             StartCoroutine(OnAiDieCo());
         }
-
-   
-    
-
 
     private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
     {
 
-        CinemachineShake.Instance.ShakeCamera(.2f, 1f);
         HapticManager.Haptic(HapticTypes.Warning);
 
         if(Health.CurrentHealth <= 0)
         {
-            
+            GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
             Events.OnPlayerDie.Invoke(); //from Ai controller, for animation
 
