@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
         if(Health.CurrentHealth <= 0)
         {
-            
+            GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
             Events.OnPlayerDie.Invoke(); //from Ai controller, for animation
 
