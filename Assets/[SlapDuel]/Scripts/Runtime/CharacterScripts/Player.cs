@@ -8,11 +8,14 @@ public class Player : MonoBehaviour //static yapip instance yap
 
     public SkinnedMeshRenderer _playerMat;
     private Stamina _stamina;
+    private Health _health;
+    private AnimationController _animationController;
 
     private float _normalizeStamina;
 
-    private Health _health;
-
+    
+    
+    public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
 
     public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
     
@@ -92,7 +95,11 @@ public class Player : MonoBehaviour //static yapip instance yap
     public void UpgradeUIParticle(string s)
     {
         _upgradeParticle.Play();
+        AnimationController.TriggerAnimation("Happy");
+
     }
+
+
 
   
 }
