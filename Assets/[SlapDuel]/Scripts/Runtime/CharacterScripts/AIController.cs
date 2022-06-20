@@ -120,6 +120,7 @@ public class AIController : MonoBehaviour
         GetComponent<IncomeManager>();
         CreateFloatingText("+" + IncomeManager.IdleStat.CurrentValue.ToString("N1") + " $", Color.green, 1f);
 
+
         if (Health.CurrentHealth <= 0)
         {
             _isDead = true; //(mert) collider'a tekrar degmesin diye. Surekli instantiate ediyordu.

@@ -17,6 +17,7 @@ namespace HCB.UI
         public static string BlockInputPanel = "BlockInputPanel";
         public static string DebugPanel = "DebugPanel";
         public static string InitializePanel = "InitializePanel";
+        public static string UpgradePanel = "UpgradePanel";
 
         public static Dictionary<string, HCBPanel> HCBPanels = new Dictionary<string, HCBPanel>();
 
@@ -31,7 +32,8 @@ namespace HCB.UI
             LevelLoadingPanel,
             BlockInputPanel,
             DebugPanel,
-            InitializePanel
+            InitializePanel,
+            UpgradePanel
         };
         public static List<string> PanelIDs { get { return panelIDs.ToList(); } }
     }

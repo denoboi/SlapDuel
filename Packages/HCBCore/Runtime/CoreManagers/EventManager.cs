@@ -11,6 +11,8 @@ namespace HCB.Core
     {
         public static UnityEvent OnPlayerDataChange = new UnityEvent();
         public static CurrencyEvent OnCurrencyInteracted = new CurrencyEvent();
+        public static UnityEvent OnPlayerGetUpgrade = new UnityEvent();
+
 
         public static StringEvet OnStatUpdated = new StringEvet();
         public static UnityEvent OnRemoteUpdated = new UnityEvent();

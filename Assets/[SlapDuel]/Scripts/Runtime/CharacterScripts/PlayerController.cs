@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     private Stamina _stamina;
     private Health _health;
     private IncomeManager _incomeManager;
+    private Canvas _canvas;
+
+
+    public Canvas Canvas { get { return _canvas == null ? _canvas = GetComponentInChildren<Canvas>(true) : _canvas; } } //obje kapaliysa da get ediyor true iken
 
     public AnimationController AnimationController { get { return _animationController == null ? _animationController = GetComponent<AnimationController>() : _animationController; } }
    
@@ -28,17 +32,22 @@ public class PlayerController : MonoBehaviour
 
     public bool IsControlable;
     private bool isTired;
+    public bool IsDead { get; private set; }
+
+ 
 
     private void OnEnable()
     {
         Events.OnAIDie.AddListener(OnAiDie);
         Health.PlayerOnGetDamage.AddListener(OnPlayerDie);
+        LevelManager.Instance.OnLevelStart.AddListener(CanvasOpen);
     }
 
     private void OnDisable()
     {
         Events.OnAIDie.RemoveListener(OnAiDie);
         Health.PlayerOnGetDamage.RemoveListener(OnPlayerDie);
+        LevelManager.Instance.OnLevelStart.AddListener(CanvasOpen);
     }
 
 
@@ -68,6 +77,10 @@ public class PlayerController : MonoBehaviour
         LaneRunner.follow = true;
         AnimationController.FloatAnimation("Speed", 1);
         CanMove = true;
+
+        _isRegenerated = true; //this is new, for the haptic bug
+
+        AnimationController.BoolAnimation("IsSlapping", false);
         
     }
 
@@ -82,9 +95,6 @@ public class PlayerController : MonoBehaviour
             CanMove = false;
 
         AnimationController.FloatAnimation("Speed", 0);
-
-
-        // bu stoptan bagimsiz olabilir. Stop tek kez calisabilir update yerine.
     }
 
 
@@ -99,7 +109,9 @@ public class PlayerController : MonoBehaviour
             if (isTired)
                 return;
             AnimationController.TriggerAnimation("Slap");
-            
+
+            Stamina.StaminaTween(Stamina.CurrentStamina - 17f);
+            AnimationController.BoolAnimation("IsSlapping", true);
         }
         
 
@@ -109,6 +121,9 @@ public class PlayerController : MonoBehaviour
             Stamina.StaminaDrain();
             Events.OnPlayerSlapping.Invoke();
             _isRegenerated = false;
+
+            AnimationController.BoolAnimation("IsSlapping", true);
+
         }
 
 
@@ -127,6 +142,8 @@ public class PlayerController : MonoBehaviour
 
             AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
+
+            AnimationController.BoolAnimation("IsSlapping", false);
         }
     }
 
@@ -153,39 +170,38 @@ public class PlayerController : MonoBehaviour
             
 
     }
-
-    
+ 
         IEnumerator OnAiDieCo()
         {
-            HapticManager.Haptic(HapticTypes.SoftImpact);
-            yield return new WaitForSeconds(1);
+ 
+            yield return new WaitForSeconds(0.5f);
             IsTriggered = false;
             CanMove = false;
-            
-            
+
             AnimationController.FloatAnimation("Speed", 1);
         }
 
         private void OnAiDie()
         {
+            CinemachineShake.Instance.ShakeCamera(.6f, 1.5f);
+            HapticManager.Haptic(HapticTypes.Success);
+            AnimationController.BoolAnimation("IsSlapping", false);
+            
             StartCoroutine(OnAiDieCo());
         }
 
-   
-    
-
-
-    private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
+    private void OnPlayerDie()
     {
 
-        CinemachineShake.Instance.ShakeCamera(.2f, 1f);
+        HapticManager.Haptic(HapticTypes.Warning);
 
         if(Health.CurrentHealth <= 0)
         {
-            
+            IsDead = true;
+            GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
-            Events.OnPlayerDie.Invoke(); //from Ai controller, for animation
-
+            Events.OnPlayerDie.Invoke(); //from Ai controller, for animation - from Player, for StopSweat
+           
             StartCoroutine(WaitForEnd());
 
         }
@@ -196,6 +212,11 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
         GameManager.Instance.CompeleteStage(false);
+    }
+
+    private void CanvasOpen()
+    {
+        Canvas.gameObject.SetActive(true);
     }
 
 
