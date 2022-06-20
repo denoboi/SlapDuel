@@ -35,7 +35,7 @@ public class Player : MonoBehaviour //static yapip instance yap
    
         _normalizeStamina = NormalizeValue(Stamina.CurrentStamina, 0, Stamina.MaxStamina); // bunu tam anlamadim
 
-        _playerMat.materials[1].SetFloat("_Postion", _normalizeStamina);
+        _playerMat.material.SetFloat("_Postion", _normalizeStamina);
 
         if(Stamina.CurrentStamina < 10)
         {
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour //static yapip instance yap
         else
         {
             StopSweat();
-            _playerMat.SetBlendShapeWeight(0, Mathf.Lerp(_playerMat.GetBlendShapeWeight(0), 80, Time.deltaTime * _headChangeSpeed)); //default head size is 80
+            _playerMat.SetBlendShapeWeight(0, Mathf.Lerp(_playerMat.GetBlendShapeWeight(0), 0, Time.deltaTime * _headChangeSpeed)); //default head size is 80
         }
 
     }
