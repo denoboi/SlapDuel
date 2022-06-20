@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     public bool IsControlable;
     private bool isTired;
+    private bool canRecover;
+    private float _recoveryWaitTime = 2.5f;
+
     public bool IsDead { get; private set; }
 
  
@@ -108,21 +111,40 @@ public class PlayerController : MonoBehaviour
         {
             if (isTired)
                 return;
+
             AnimationController.TriggerAnimation("Slap");
 
-            Stamina.StaminaTween(Stamina.CurrentStamina - 17f);
+            Stamina.StaminaTween(Stamina.CurrentStamina - 12f);
             AnimationController.BoolAnimation("IsSlapping", true);
+
+        }
+
+        IEnumerator WaitForRegen()
+        {
+            AnimationController.TriggerAnimation("Idle");
+            yield return new WaitForSeconds(2.5f);
+            
         }
         
 
         if (Input.GetMouseButton(0))
         {
-  
-            Stamina.StaminaDrain();
-            Events.OnPlayerSlapping.Invoke();
-            _isRegenerated = false;
+            if (isTired)
+            {
+                _isRegenerated = false;
+                StartCoroutine(WaitForRegen());
+                
+            }
+            
+            else
+            {
+                Stamina.StaminaDrain();
+                Events.OnPlayerSlapping.Invoke();
+                
 
-            AnimationController.BoolAnimation("IsSlapping", true);
+                AnimationController.BoolAnimation("IsSlapping", true);
+            }
+           
 
         }
 
@@ -142,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
             AnimationController.TriggerAnimation("Idle");
             _isRegenerated = true;
-
+            
             AnimationController.BoolAnimation("IsSlapping", false);
         }
     }
@@ -154,7 +176,8 @@ public class PlayerController : MonoBehaviour
         
         if (Stamina.CurrentStamina <= 10)
         {
-            
+
+            canRecover = false;
             Events.OnStaminaLow.Invoke(); //can vignette
             
             isTired = true;
@@ -166,6 +189,7 @@ public class PlayerController : MonoBehaviour
          {
             isTired = false;
             Events.OnStaminaNormal.Invoke();
+            canRecover = true;
          }
             
 

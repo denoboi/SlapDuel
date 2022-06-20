@@ -58,7 +58,7 @@ public class Player : MonoBehaviour //static yapip instance yap
 
             Sweat();
 
-            _playerMat.SetBlendShapeWeight(0, Mathf.Clamp(Mathf.Sin(Time.time * _headChangeSpeed) * 100, 20, 100));
+            _playerMat.SetBlendShapeWeight(0, Mathf.Clamp(Mathf.Sin(Time.time * _headChangeSpeed) * 100, 80, 100));
 
         }
         else
