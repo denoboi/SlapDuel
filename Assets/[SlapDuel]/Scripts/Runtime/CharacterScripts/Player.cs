@@ -1,3 +1,4 @@
+using HCB.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +11,30 @@ public class Player : MonoBehaviour //static yapip instance yap
 
     private float _normalizeStamina;
 
-   
+    private Health _health;
 
 
-
+    public Health Health { get { return _health == null ? _health = GetComponent<Health>() : _health; } }
     
     public Stamina Stamina { get { return _stamina == null ? _stamina = GetComponent<Stamina>() : _stamina; } }
 
     [SerializeField] private ParticleSystem _sweatingParticle;
     [SerializeField] private float _headChangeSpeed;
+    [SerializeField] private ParticleSystem _upgradeParticle;
 
+    private void OnEnable()
+    {
+        Events.OnPlayerDie.AddListener(StopSweat);
+        EventManager.OnStatUpdated.AddListener(UpgradeUIParticle);
+    }
 
-   
+    private void OnDisable()
+    {
+        Events.OnPlayerDie.RemoveListener(StopSweat);
+        EventManager.OnStatUpdated.RemoveListener(UpgradeUIParticle);
+
+    }
+
 
 
     private void Update()
@@ -37,8 +50,9 @@ public class Player : MonoBehaviour //static yapip instance yap
 
         _playerMat.materials[1].SetFloat("_Postion", _normalizeStamina);
 
-        if(Stamina.CurrentStamina < 10)
+        if(Stamina.CurrentStamina < 10 && Health.CurrentHealth > 0)
         {
+
             Sweat();
 
             _playerMat.SetBlendShapeWeight(0, Mathf.Clamp(Mathf.Sin(Time.time * _headChangeSpeed) * 100, 20, 100));
@@ -73,6 +87,11 @@ public class Player : MonoBehaviour //static yapip instance yap
     {
         var emission = _sweatingParticle.emission;
         emission.rateOverTime = 0;
+    }
+
+    public void UpgradeUIParticle(string s)
+    {
+        _upgradeParticle.Play();
     }
 
   

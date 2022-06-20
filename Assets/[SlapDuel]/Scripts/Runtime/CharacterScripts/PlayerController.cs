@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsControlable;
     private bool isTired;
+    public bool IsDead { get; private set; }
 
     private void OnEnable()
     {
@@ -184,17 +185,18 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(OnAiDieCo());
         }
 
-    private void OnPlayerDie() // bu ai scriptine yazilip baska bir eventle burada dinlenebilir.
+    private void OnPlayerDie()
     {
 
         HapticManager.Haptic(HapticTypes.Warning);
 
         if(Health.CurrentHealth <= 0)
         {
+            IsDead = true;
             GetComponentInChildren<Canvas>().enabled = false;
             GetComponent<RagdollController>().EnableRagdollWithForce(Vector3.right, 150);
-            Events.OnPlayerDie.Invoke(); //from Ai controller, for animation
-
+            Events.OnPlayerDie.Invoke(); //from Ai controller, for animation - from Player, for StopSweat
+           
             StartCoroutine(WaitForEnd());
 
         }
