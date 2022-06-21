@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
             
             isTired = true;
             AnimationController.TriggerAnimation("Idle");
-            HapticManager.Haptic(HapticTypes.RigidImpact);
+            //HapticManager.Haptic(HapticTypes.RigidImpact);
         }
 
          if (Stamina.CurrentStamina > 10 && isTired)
