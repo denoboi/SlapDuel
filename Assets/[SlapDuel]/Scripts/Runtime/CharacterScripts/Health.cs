@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
 
     [Header("Health Multiplier Parameters")]
 
-    [Range(100f, 1000f)] public float HealthDrainMultiplier;
+    [Range(10f, 1000f)] public float HealthDrainMultiplier;
     public float PlayerPower = 1;
 
     public void HealthDrain()
